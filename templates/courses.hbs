@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+ 
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Forum&display=swap");
+
+:root{
+  --primary-color: #12c2b9;
+  --secondary: #dbfffe;
+  --black: #141414;
+  --white: #fff;
+  --box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+*{
+  font-family: 'DM Sans', sans-serif;
+  margin: 0; padding: 0;
+  box-sizing: border-box;
+  outline: none; border: none;
+  text-decoration: none;
+  text-transform: capitalize;
+  transition: all .2s linear;
+}
+
+html{
+  font-size: 62.5%;
+  overflow-x: hidden;
+  scroll-padding-top: 9rem;
+  scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar{
+  width: 1rem;
+}
+
+html::-webkit-scrollbar-track{
+  background: transparent;
+}
+
+html::-webkit-scrollbar-thumb{
+  background: var(--primary-color);
+}
+
+section{
+  padding: 5rem 7%;
+}
+
+.heading{
+  position: relative;
+  color: var(--primary-color);
+  font-size: 3rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .4rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  margin-top: 100px;;
+}
+
+.heading::after{
+  content: url('../images/separator.svg');
+  display: block;
+  width: 10rem;
+  margin-inline: auto;
+  margin-top: -1rem;
+}
+
+
+
+/* header */
+
+.header{
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: var(--white);
+  box-shadow: var(--box-shadow);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 9%;
+}
+
+.header .logo{
+  font-size: 2.5rem;
+  font-weight: bolder;
+  color: var(--black);
+}
+
+.header .logo i{
+  color: var(--primary-color);
+  padding-right: .5rem;
+}
+
+.header .navbar a{
+  font-size: 1.7rem;
+  color: var(--black);
+  margin: 0 1rem;
+  padding-block: 1rem;
+}
+
+.header .navbar a:hover{
+  color: var(--primary-color);
+}
+
+.header .navbar .hover-underline{
+  position: relative;
+  max-width: max-content;
+}
+
+.header .navbar .hover-underline::after{
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%;
+  height: .5rem;
+  border-block: .1rem solid var(--primary-color);
+  transform: scaleX(0.2);
+  opacity: 0;
+  transition: 500ms ease;
+}
+
+.header .navbar .hover-underline:is(:hover, :focus-visible)::after{
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+.header .icons div{
+  font-size: 2.5rem;
+  margin-left: 1.7rem;
+  color: var(--black);
+  cursor: pointer;
+}
+
+.header .icons div:hover{
+  color: var(--primary-color);
+}
+
+#menu-btn{
+  display: none;
+}
+
+.header .login-form{
+  position: absolute;
+  top: 115%; right: -105%;
+  background: var(--white);
+  box-shadow: .5rem;
+  width: 35rem;
+  box-shadow: var(--box-shadow);
+  padding: 2rem;
+}
+
+.header .login-form.active{
+  right: 2rem;
+  transition: .4s linear;
+}
+
+.header .login-form h3{
+  font-size: 2.2rem;
+  color: var(--black);
+  text-align: center;
+  margin-bottom: .7rem;
+}
+
+.header .login-form .box{
+  font-size: 1.5rem;
+  margin: .7rem 0;
+  border: .1rem solid rgba(0, 0, 0, 0.1);
+  padding: 1rem 1.2rem;
+  color: var(--black);
+  text-transform: none;
+  width: 100%;
+}
+
+.header .login-form .remember{
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin: .7rem 0;
+}
+
+.header .login-form .remember label{
+  font-size: 1.5rem;
+  color: var(--black);
+  cursor: pointer;
+}
+
+/* home */
+
+.home{
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: url(../images/home.jpg) no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.home .content{
+  max-width: 50rem;
+}
+
+.home .content h3{
+  font-size: 5rem;
+  color: var(--white);
+  line-height: 1.2;
+}
+
+.home .content p{
+  font-size: 1.5rem;
+  line-height: 2;
+  color: var(--white);
+  padding: 1rem 0;
+}
+
+/* ends */
+
+
+/* subjects */
+
+.subjects .box-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    gap: 2rem;
+  }
+  
+  .subjects .box-container .box{
+    padding: 3rem 2rem;
+    text-align: center;
+    border: .1rem solid var(--primary-color);
+    background: var(--secondary);
+    cursor: pointer;
+  }
+  
+  .subjects .box-container .box:hover{
+    background: var(--primary-color);
+  }
+  
+  .subjects .box-container .box img{
+    height: 10rem;
+    margin-bottom: .7rem;
+  }
+  
+  .subjects .box-container .box h3{
+    font-size: 1.7rem;
+    color: #444;
+    padding: .5rem 0;
+    text-transform: capitalize;
+  }
+  
+  .subjects .box-container .box:hover h3{
+    color: #fff;
+  }
+  
+  .subjects .box-container .box p{
+    font-size: 1.5rem;
+    line-height: 2;
+    color: #777;
+  }
+  
+  .subjects .box-container .box:hover p{
+    color: #eee;
+  }
+  
+  /* end */
+  
+  /* courses */
+  
+  .courses .box-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: 2rem;
+  }
+  
+  .courses .box-container .box .image{
+    height: 25rem;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .courses .box-container .box .image img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+  
+  .courses .box-container .box:hover .image img{
+    transform: scale(1.1);
+  }
+  
+  .courses .box-container .box .image h3{
+    font-size: 1.5rem;
+    color: #444;
+    position: absolute;
+    top: 1rem; left: 1rem;
+    padding: .5rem 1.5rem;
+    background: var(--white);
+  }
+  
+  .courses .box-container .box .content{
+    padding: 2rem;
+    position: relative;
+    border: 0.1rem solid var(--primary-color);
+  }
+  
+  .courses .box-container .box .content h4{
+    position: absolute;
+    background: var(--primary-color);
+    color: var(--secondary);
+    top: -3rem; right: 1.5rem;
+    width: 6rem; 
+    height: 6rem;
+    line-height: 6rem;
+    text-align: center;
+    font-size: 1.4rem;
+    border-radius: 50%;
+  }
+  
+  .courses .box-container .box .content p{
+    font-size: 1.4rem;
+    color: #444;
+    line-height: 2;
+  }
+  
+  .courses .box-container .box .content h3{
+    font-size: 2rem;
+    color: #444;
+  }
+  
+  .courses .box-container .box .content .stars{
+    padding: 1rem 0;
+  }
+  
+  .courses .box-container .box .content .stars i{
+    font-size: 1.7rem;
+    color: var(--primary-color);
+  }
+  
+  .courses .box-container .box .content .stars span{
+    font-size: 1.4rem;
+    color: #777;
+    margin-left: .5rem;
+  }
+  
+  .courses .box-container .box .content .icons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 0.1rem solid var(--primary-color);
+  }
+  
+  .courses .box-container .box .content .icons span{
+    font-size: 1.5rem;
+    color: #444;
+  }
+  
+  .courses .box-container .box .content .icons span i{
+    color: var(--primary-color);
+    padding-right: .5rem;
+  }
+  
+  .course-button {
+    color: white;
+    background-color: #12c2b9;
+    border: none; /* Remove border */
+    padding: 10px 10px; /* Padding */
+    text-align: center; /* Center text */
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Make it an inline-block element */
+    font-size: 16px; /* Font size */
+    margin: 4px 2px; /* Margin */
+    cursor: pointer; /* Add cursor pointer on hover */
+    border-radius: 8px; /* Rounded corners */
+  }
+  
+  .course-buttons{
+    color: white;
+    background-color: #12c2b9;
+    border: none; /* Remove border */
+    padding: 10px 10px; /* Padding */
+    text-align: center; /* Center text */
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Make it an inline-block element */
+    font-size: 16px; /* Font size */
+    margin: 4px 2px; /* Margin */
+    cursor: pointer; /* Add cursor pointer on hover */
+    border-radius: 8px; /* Rounded corners */
+    margin-left: 130px;
+
+  }
+  
+  /* Hover effect */
+  .course-button:hover {
+    background-color: #e67e22; /* Darker orange on hover */
+  }
+  .course-buttons:hover {
+    background-color: #e67e22; /* Darker orange on hover */
+  }
+  
+  .more h1{
+    text-align: center;
+    margin-top: 90px;
+    position: relative;
+    color: var(--primary-color);
+    font-size: 3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .4rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    margin-top: 100px;;
+  }
+  
+
+  .more::after{
+    content: url('../images/separator.svg');
+    display: block;
+    width: 10rem;
+    margin-inline: auto;
+    margin-top: -1rem;
+  }
+  .para p{
+    font-size: 2rem;
+    color: #444;
+    padding: 1rem 0;
+    line-height: 1.8;
+  }
+   .para p span{
+    color: orange;
+    font-size: 2.5rem;
+  }
+  
+  /* ends */
+  .footer{
+    background: var(--secondary);
+    text-align: center;
+  }
+  
+  .footer .box-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    gap: 2rem;
+  }
+  
+  .footer .box-container .box h3{
+    font-size: 2.2rem;
+    color: var(--primary-color);
+    padding: 1rem 0;
+  }
+  
+  .footer .box-container .box p{
+    font-size: 1.5rem;
+    color: var(--black);
+    line-height: 2;
+    padding: 1rem 0;
+  }
+  
+  .footer .box-container .box .share{
+    margin-top: 1rem;
+  }
+  
+  .footer .box-container .box .share a{
+    height: 4.5rem;
+    width: 4.5rem;
+    line-height: 4.5rem;
+    border-radius: 10%;
+    font-size: 1.7rem;
+    border: .1rem solid var(--primary-color);
+    color: var(--primary-color);
+    margin-right: .3rem;
+    text-align: center;
+  }
+  
+  .footer .box-container .box .share a:hover{
+    background: var(--primary-color);
+    color: var(--white);
+  }
+  
+  .footer .box-container .box .link{
+    font-size: 1.7rem;
+    line-height: 2;
+    color: var(--black);
+    padding: .5rem 0;
+    display: block;
+  }
+  
+  .footer .box-container .box .link:hover{
+    color: var(--primary-color);
+    text-decoration: underline;
+  }
+  
+  .footer .credit{
+    font-size: 2rem;
+    margin-top: 3rem;
+    padding-top: 3rem;
+    text-align: center;
+    color: var(--black);
+    border-top: .1rem solid var(--primary-color);
+  }
+  
+  .footer .credit span{
+    color: var(--primary-color);
+  }
+  
+  /* ends */
+  
+  /* media queries */
+  
+  @media (max-width:991px){
+  
+    html{
+      font-size: 55%;
+    }
+  
+    .header{
+      padding: 2rem 4rem;
+    }
+  
+    section{
+      padding: 3rem 2rem;
+    }
+  
+  }
+  
+  @media (max-width:768px){
+  
+    #menu-btn{
+      display: inline-block;
+    }
+  
+    .header .navbar{
+      position: absolute;
+      top: 110%; right: -110%;
+      width: 30rem;
+      box-shadow: var(--box-shadow);
+      border-radius: .5rem;
+      background: var(--white);
+    }
+  
+    .header .navbar.active{
+      right: 2rem;
+      transition: .4s linear;
+    }
+  
+    .header .navbar a{
+      font-size: 2rem;
+      margin: 1rem 2.5rem;
+      display: block;
+    }
+  
+    .home .content h3{
+      font-size: 3rem;
+    }
+  
+    .about .container .about-content{
+      padding-left: 0;
+    }
+  
+  }
+  
+  @media (max-width:450px){
+    html{
+      font-size: 50%;
+    }
+  }
+    </style>
+</head>
+<body>
+   <header class="header">
+
+        <a href="#" class="logo"><i class="fas fa-book"></i> education</a>
+<nav class="navbar">
+            <a href="/index" class="hover-underline">home</a>
+            <a href="/about" class="hover-underline">about</a>
+            <a href="/courses" class="hover-underline">courses</a>
+            <a href="/teacher" class="hover-underline">teacher</a>
+            <a href="/todolist" class="hover-underline">todolist</a>
+            <a href="/review" class="hover-underline">review</a>
+            <a href="/blog" class="hover-underline">blog</a>
+            <a href="/contact" class="hover-underline">contact</a>
+                    <a href="/chatbot" class="hover-underline">chatwithus</a>
+                      <a href="https://www.overleaf.com/latex/templates/altacv-template/trgqjpwnmtgv"  class="hover-underline">CV/Resume</a>
+        </nav>
+
+        
+
+    </header>
+    <section class="subjects">
+
+        <h1 class="heading">our popular subjects</h1>
+
+        <div class="box-container">
+
+            <div class="box">
+                <img src="http://127.0.0.1:5500/School%20website/career.jpg" alt="">
+                <h3>Career development</h3>
+                <p>fun & challenging</p>
+            </div>
+
+            <div class="box">
+                <img src="http://127.0.0.1:5500/School%20website/fsd.jpg" alt="">
+                <h3>Full stack develepoment</h3>
+                <p>fun & challenging</p>
+            </div>
+
+            <div class="box">
+                <img src="http://127.0.0.1:5500/School%20website/ml.jpeg" alt="">
+                <h3>Machine Learning</h3>
+                <p>fun & challenging</p>
+            </div>
+
+            <div class="box">
+                <img src="http://127.0.0.1:5500/School%20website/ai.jpg" alt="">
+                <h3>Artificial intelligence</h3>
+                <p>fun & challenging</p>
+            </div>
+
+        </div>
+
+    </section>
+    
+    
+    <section class="courses" id="courses">
+
+        <h1 class="heading">our famous courses</h1>
+
+        <div class="box-container">
+
+            <div class="box">
+                <div class="image shine">
+                    <img src="http://127.0.0.1:5500/School%20website/images/java.jpg" alt="">
+                   
+                </div>
+                <div class="content">
+                    <p>updated 25/09/2021</p>
+                    <h3>Java</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>(785)</span><br><br>
+                        <a href="https://www.coursera.org/courses?query=java"><button class="course-button">Courses</button></a>
+                        <a href="https://youtu.be/ntLJmHOJ0ME?si=egGCKvSVd5GVWgmg"><button class="course-buttons">Youtube</button></a>
+                    </div>
+                    <div class="icons">
+                        <!-- <span><i class="far fa-bookmark"></i> 15 lessons</span> -->
+                        <span><i class="far fa-clock"></i> 8h 25m 9s</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="image shine">
+                    <img src="http://127.0.0.1:5500/School%20website/images/python.jpg" alt="">
+                 
+                </div>
+                <div class="content">
+                    <p>updated 25/09/2021</p>
+                    <h3>Python</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>(785)</span><br><br>
+                        <a href="https://www.coursera.org/courses?query=python"><button class="course-button">Courses</button></a>
+                        <a href="https://youtu.be/QXeEoD0pB3E?si=pkwsFHNPCd4l9ewn"><button class="course-buttons">Youtube</button></a>
+                    </div>
+                    <div class="icons">
+                        <!-- <span><i class="far fa-bookmark"></i> 15 lessons</span> -->
+                        <span><i class="far fa-clock"></i> 8h 25m 9s</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="image shine">
+                    <img src="http://127.0.0.1:5500/School%20website/images/datascience.jpg" alt="">
+                   
+                </div>
+                <div class="content">
+                    <p>updated 25/09/2021</p>
+                    <h3>Data Science</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>(785)</span><br><br>
+                        <a href="https://www.coursera.org/search?query=data%20science"><button class="course-button">Courses</button></a>
+                        <a href="https://youtu.be/-ETQ97mXXF0?si=BRi_IFGjDs1tPvTP"><button class="course-buttons">Youtube</button></a>
+                    </div>
+                    <div class="icons">
+                        <!-- <span><i class="far fa-bookmark"></i> 15 lessons</span> -->
+                        <span><i class="far fa-clock"></i> 8h 25m 9s</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="image shine">
+                    <img src="http://127.0.0.1:5500/School%20website/images/web.jpg" alt="">
+                  
+                </div>
+                <div class="content">
+                    <p>updated 25/09/2021</p>
+                    <h3>Web Developement</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>(785)</span><br><br>
+                        <a href="https://www.coursera.org/search?query=web%20developement"><button class="course-button">Courses</button></a>
+                        <a href="https://youtu.be/nu_pCVPKzTk?si=5G_uNXvby_AJvgmx"><button class="course-buttons">Youtube</button></a>
+                    </div>
+                    <div class="icons">
+                        <!-- <span><i class="far fa-bookmark"></i> 15 lessons</span> -->
+                        <span><i class="far fa-clock"></i> 8h 25m 9s</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="image shine">
+                    <img src="http://127.0.0.1:5500/School%20website/images/c.jpg" alt="">
+                   
+                </div>
+                <div class="content">
+                    <p>updated 25/09/2021</p>
+                    <h3>c</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>(785)</span><br><br>
+                        <a href="https://www.coursera.org/search?query=c"><button class="course-button">Courses</button></a>
+                        <a href="https://youtu.be/irqbmMNs2Bo?si=foJJfj60WhRQtmA9"><button class="course-buttons">Youtube</button></a>
+                    </div>
+                    <div class="icons">
+                        <!-- <span><i class="far fa-bookmark"></i> 15 lessons</span> -->
+                        <span><i class="far fa-clock"></i> 8h 25m 9s</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="image shine">
+                    <img src="http://127.0.0.1:5500/School%20website/images/c++.jpeg" alt="">
+                    
+                </div>
+                <div class="content">
+                    <p>updated 25/09/2021</p>
+                    <h3>c++</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>(785)</span><br><br>
+                        <a href="https://www.coursera.org/search?query=c%2B%2B"><button class="course-button">Courses</button></a>
+                        <a href="https://youtu.be/oOmbSpOzvYg?si=MNxYrLihXmEqEtAo"><button class="course-buttons">Youtube</button></a>
+                    </div>
+                    <div class="icons">
+                        <!-- <span><i class="far fa-bookmark"></i> 15 lessons</span> -->
+                        <span><i class="far fa-clock"></i> 8h 25m 9s</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="more">
+            <h1>REGISTER OUR COURSES</h1>
+        </div> 
+        <div class="para">
+            <p><span>Note :</span>If you want to register our courses go to the contact page and register their by giving your details.</p>
+            <a href="contact"><button class="course-button">Contact</button></a>
+        </div>
+        
+        <div class="more">
+            <h1>ABOUT OUR COURSES</h1>
+        </div>
+        <div class="para">
+            <p><span>1)Comprehensive Curriculum : </span> Highlight the breadth and depth of the curriculum, covering key topics and skills relevant to the subject area.</p>
+            <p><span>2)Differentiated Instruction : </span> Explain how the courses accommodate diverse learning styles and abilities through differentiated instruction, personalized learning plans, and accommodations for special needs students.</p>
+            <p><span>3)Real-World Applications : </span> Showcase how the courses connect theoretical concepts to real-world applications, helping students understand the relevance and importance of their learning.</span></p>
+            <p><span>4)Supportive Learning Environment :</span> Describe the supportive learning environment fostered in the courses, where students feel safe to take risks, ask questions, and seek help when needed.</p>
+            <p><span>5)Technology Integration :</span>  Highlight how technology is integrated into the courses to enhance teaching and learning, such as through interactive whiteboards, educational software, and online collaboration tools.</p>
+            <p><span>6)Alignment with Standards : </span>Emphasize how the courses align with national or state educational standards, ensuring that students receive a high-quality education.</p>
+
+        </div>
+    <section class="footer">
+
+        <div class="box-container">
+
+            <div class="box">
+                <h3>find us here</h3>
+                <p>Our Social Platforms</p>
+                <div class="share">
+                    <a href="https://www.facebook.com/loknath.m.7" class="fab fa-facebook-f"></a>
+                    <a href="https://twitter.com/loknathreddy_M" class="fab fa-twitter"></a>
+                    <a href="https://www.instagram.com/loknath.__.1811/" class="fab fa-instagram"></a>
+                    <a href="https://www.instagram.com/loknath.__.1811/" class="fab fa-linkedin"></a>
+                </div>
+            </div>
+
+            <div class="box">
+                <h3>contact us</h3>
+                <p>+91 9121952027</p>
+                <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox" class="link">Gmail</a>
+            </div>
+
+            <div class="box">
+                <h3>localization</h3>
+                <p>proddatur</p>
+            </div>
+
+        </div>
+        <div class="credit">created by <span>ninjashub </span>| all rights are reserved!</div>
+    </section>
+
+
+
+</body>
+</html>

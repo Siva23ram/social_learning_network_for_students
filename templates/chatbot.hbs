@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Create Your Own Chatbot</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="chatbot.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700,300">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.1.2/css/material-design-iconic-font.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400&family=Finger+Paint&display=swap">
+  <style>* {
+    font-size: 1.3vw;
+    font-family: "Epilogue", sans-serif;
+  }
+  
+  html {
+    --scrollbarBG: #fff;
+    --thumbBG: #90a4ae;
+  }
+  
+  body {
+    background: #ccc;
+  }
+  body .card {
+    height: 45vw;
+    width: 35vw;
+    background-color: white;
+    margin-left: 30vw;
+    margin-top: 5vw;
+    box-shadow: 2vw 2vw 12vw 3vw #ccc;
+  }
+  body .card #header {
+    height: 5vw;
+    background: #000;
+    padding: 0vw;
+  }
+  body .card #header h1 {
+    color: #fff;
+    font-size: 2vw;
+    font-family: "Finger Paint", cursive;
+    padding: 1vw;
+  }
+  body .card #message-section::-webkit-scrollbar {
+    width: 10px;
+  }
+  body .card #message-section {
+    height: 32vw;
+    padding: 0 2.5vw;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+  }
+  body .card #message-section::-webkit-scrollbar-track {
+    background: var(--scrollbarBG);
+  }
+  body .card #message-section::-webkit-scrollbar-thumb {
+    background-color: var(--thumbBG);
+    border-radius: 6px;
+    border: 3px solid var(--scrollbarBG);
+  }
+  body .card #message-section #bot,
+  body .card #message-section #user {
+    position: relative;
+    bottom: 0;
+    min-height: 1.5vw;
+    border: 0.15vw solid #777;
+    background-color: #fff;
+    border-radius: 0px 1.5vw 1.5vw 1.8vw;
+    padding: 1vw;
+    margin: 1.5vw 0;
+  }
+  body .card #message-section #user {
+    border: 1.5px solid #000;
+    border-radius: 1.5vw 0vw 1.5vw 1.8vw;
+    background-color: #000;
+    float: right;
+  }
+  body .card #message-section #user #user-response {
+    color: #fff;
+  }
+  body .card #message-section .message {
+    color: #000;
+    clear: both;
+    line-height: 1.2vw;
+    font-size: 1.2vw;
+    padding: 8px;
+    position: relative;
+    margin: 8px 0;
+    max-width: 85%;
+    word-wrap: break-word;
+    z-index: 2;
+  }
+  body .card #input-section {
+    z-index: 1;
+    padding: 0 2.5vw;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    overflow: hidden;
+    height: 6vw;
+    width: 100%;
+  }
+  body .card #input-section input {
+    color: #000;
+    min-width: 0.5vw;
+    outline: none;
+    height: 5vw;
+    width: 26vw;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: solid #000 0.1vw;
+  }
+  body .card .send {
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    flex: 0 0 auto;
+    margin-left: 1.4vw;
+    margin-right: 0vw;
+    padding: 0;
+    position: relative;
+    outline: none;
+  }
+  body .card .send .circle {
+    position: relative;
+    width: 4.8vw;
+    height: 4.8vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  body .card .send .circle i {
+    font-size: 3vw;
+    margin-left: -1vw;
+    margin-top: 1vw;
+  }</style>
+  </head>
+  <body>
+<body>
+  <div class="card">
+    <div id="header">
+      <h1>Chatter box!</h1>
+    </div>
+    <div id="message-section">
+      <div class="message" id="bot"><span id="bot-response">Hello.. I'm listening! Go on..</span></div>
+    </div>
+    <div id="input-section">
+      <input id="input" type="text" placeholder="Type a message" autocomplete="off" autofocus="autofocus"/>
+      <button class="send" onclick="sendMessage()">
+        <div class="circle"><i class="zmdi zmdi-mail-send"></i></div>
+      </button>
+    </div>
+  </div>
+  <script>
+    const userMessage = [
+    ["hi", "hey", "hello"],
+    ["sure", "yes", "no"],
+    ["are you genious", "are you nerd", "are you intelligent"],
+    ["i hate you", "i dont like you"],
+    ["how are you", "how is life", "how are things", "how are you doing"],
+    ["how is corona", "how is covid 19", "how is covid19 situation"],
+    ["what are you doing", "what is going on", "what is up"],
+    ["how old are you"],
+    ["who are you", "are you human", "are you bot", "are you human or bot"],
+    ["who created you", "who made you", "who is your creator"],
+  
+    [
+      "your name please",
+      "your name",
+      "may i know your name",
+      "what is your name",
+      "what call yourself"
+    ],
+    ["i love you"],
+    ["happy", "good", "fun", "wonderful", "fantastic", "cool", "very good"],
+    ["bad", "bored", "tired"],
+    ["help me", "tell me story", "tell me joke"],
+    ["ah", "ok", "okay", "nice", "welcome"],
+    ["thanks", "thank you"],
+    ["what should i eat today"],
+    ["bro"],
+    ["what", "why", "how", "where", "when"],
+    ["corona", "covid19", "coronavirus"],
+    ["you are funny"],
+    ["i dont know"],
+    ["boring"],
+    ["im tired"],
+    ["what is html"],
+    ["what is css"],
+    ["define padding"],
+    ["what is bootstrap"],
+    ["can you explain the mvc architecture"],
+    ["selectors in css"],
+    ["what is javascript"],
+    ["what is dom"],
+    ["operators in javascript"],
+    ["what is functions in javascript"],
+    ["reactjs installation command"],
+    ["about database"],
+    ["oops in js"],
+    ["what is sql"],
+    ["what is frameworks in html"],
+    ["what is mongodb"],
+    ["what is props"],
+    ["what are hooks in react"],
+    ["what is api"],
+    ["what is routing"],
+    ["what is events in reactjs"],
+    ["what is json"],
+    ["arrays in javascript"],
+    ["js objects"],
+    ["explain the concept of responsive web design"],
+    ["explain the server side scripting"],
+    ["explain the client side scripting"],
+    ["what is an api and how is it used in backend development"],
+    ["what is a javascript framework and name some popular ones"],
+    ["what is nodejs"],
+    ["explain the event loop in nodejs"],
+    ["what is npm and how do you use it"],
+    ["how do you handle errors in nodejs"]
+  ];
+  const botReply = [
+    ["Hello!", "Hi!", "Hey!", "Hi there!"],
+    ["Okay"],
+    ["Yes I am! "],
+    ["I'm sorry about that. But I like you dude."],
+    [
+      "Fine... how are you?",
+      "Pretty well, how are you?",
+      "Fantastic, how are you?"
+    ],
+    ["Getting better. There?", "Somewhat okay!", "Yeah fine. Better stay home!"],
+  
+    [
+      "Nothing much",
+      "About to go to sleep",
+      "Can you guess?",
+      "I don't know actually"
+    ],
+    ["I am always young."],
+    ["I am just a bot", "I am a bot. What are you?"],
+    ["Sabitha Kuppusamy"],
+    ["I am nameless", "I don't have a name"],
+    ["I love you too", "Me too"],
+    ["Have you ever felt bad?", "Glad to hear it"],
+    ["Why?", "Why? You shouldn't!", "Try watching TV", "Chat with me."],
+    ["What about?", "Once upon a time..."],
+    ["Tell me a story", "Tell me a joke", "Tell me about yourself"],
+    ["You're welcome"],
+    ["Briyani", "Burger", "Sushi", "Pizza"],
+    ["Dude!"],
+    ["Yes?"],
+    ["Please stay home"],
+    ["Glad to hear it"],
+    ["Say something interesting"],
+    ["Sorry for that. Let's chat!"],
+    ["Take some rest, Dude!"],
+    ["HTML, or HyperText Markup Language, is the standard language used to create and design web pages. It's the backbone of web development, providing the structure and content of a webpage."],
+    ["CSS, or Cascading Style Sheets, is a style sheet language used to describe the presentation of a document written in HTML or XML (including XML dialects such as SVG, MathML, etc.). "],
+    ["Padding in CSS is the space between the content of an element and its border. It allows you to create space around an element's content, pushing the content away from the element's border. "],
+    ["Bootstrap is a popular front-end framework for building responsive and mobile-first websites and web applications. It provides a set of pre-designed HTML, CSS, and JavaScript components, as well as optional themes and templates, that developers can use to quickly create user interfaces with a consistent and professional look and feel."],
+    ["MVC stands for Model-View-Controller, which is a software design pattern commonly used in web development."],
+    ["Element Selector", "Class Selector", "ID Selector", "Attribute Selector. "],
+    ["JavaScript is a versatile and widely-used programming language primarily known for its role in web development."],
+    ["DOM stands for Document Object Model. It is a programming interface for web documents. Essentially, the DOM represents the structure of an HTML or XML document as a tree-like structure, where each node represents an element, attribute, or piece of text in the document."],
+    ["Arithmetic Operators","Logical Operator","Assignment Operator"],
+    ["In JavaScript, functions are blocks of code that can be defined and executed as needed. They are a fundamental part of the language and are used to organize code, perform tasks, and facilitate code reuse. "],
+    ["npx create-react-app my-app","npm start","npm run build"],
+    ["Databases are organized collections of data, typically stored electronically in a computer system. They are designed to efficiently manage, retrieve, and manipulate large volumes of data. Databases play a crucial role in software development, providing a structured and centralized way to store and access information."],
+    ["In JavaScript,oops might refer to an error or a mistake in your code. If you encounter an error, JavaScript will typically provide you with an error message indicating what went wrong. Common errors include syntax errors, where the code is not written correctly according to JavaScript's rules, or runtime errors, which occur while the code is executing."],
+    ["SQL (Structured Query Language) is a programming language used to manage and manipulate relational databases. It's a standard language for communicating with databases, enabling users to perform various operations such as querying data, inserting, updating, and deleting records, creating and modifying database schemas (tables, indexes, etc.), and defining access controls."],
+    ["In HTML, frameworks are collections of pre-written code, usually CSS and JavaScript, that developers can use to expedite the process of building websites or web applications. These frameworks provide a foundation with ready-made components, layouts, and styling, allowing developers to focus more on the functionality and content of their sites rather than spending time on repetitive styling tasks. "],
+    ["MongoDB is a popular open-source, NoSQL database management system that is designed for flexibility, scalability, and performance. Unlike traditional relational databases, MongoDB stores data in flexible, JSON-like documents with dynamic schemas, making it well-suited for handling unstructured or semi-structured data."],
+    ["props are arguments passed into react components.props are passed to components via html attributes.props stands for properties.react props are like function arguments in javascript and attributes in html."],
+    ["Hooks are function that let you hook into react state and lifecycle features from function components.hooks don't  work inside class components."],
+    ["API stands for Application Programming Interface. In the context of APIs, the word Application refers to any software with a distinct function. Interface can be thought of as a contract of service between two applications"],
+    ["In a single page react application routing refers to the process of navigating between different pages without trigerring a full page reload. the application initially loads a single htnl page. then, it dynamically renders different component based on user interaction."],
+    ["Events in react js allow developers to respond to user interaction within their application quickly and effectively.Events are triggered whenever certain actions occur-from clicks to key presses-which then fire off callback function so that appropriate responses can be made according."],
+    ["javascript object notation more commonly known by the acronym JSON is an open data interchange format that is both human and machine-readable. Despite the name javascript object notation JSON is independent of any programming language and is a common API output in a wide variety of applications."],
+    ["In JavaScript, arrays are a fundamental data structure used to store multiple values in a single variable. Arrays can hold elements of any data type, including numbers, strings, objects, and even other arrays. "],
+    ["In JavaScript, objects are one of the core data types used for storing and organizing data. Objects are collections of key-value pairs, where each key is a unique identifier (property) and each value can be of any data type, including other objects, arrays, functions, and primitives like strings, numbers, and booleans.,object()"],
+    ["Responsive web design is an approach to designing and coding websites that ensure optimal viewing and interaction across various devices and screen sizes. It involves using flexible layouts, fluid grids, and media queries to adapt the webpage's layout and design based on the device's screen size and orientation."],
+    ["Server-side scripting refers to writing code that runs on the server and generates dynamic content before sending it to the client's browser."],
+    ["Client-side scripting, on the other hand, involves writing code that runs in the client's browser and manipulates the webpage after it has been loaded."],
+    ["An API (Application Programming Interface) is a set of rules and protocols that allows different software applications to communicate and interact with each other. In backend development, APIs are often used to expose the functionality of the backend system, allowing frontend applications to send requests and receive responses over the internet."],
+    ["A JavaScript framework is a collection of pre-written code and libraries that provide a structured foundation for building web applications. Popular JavaScript frameworks include React.js, Angular, Vue.js, and Ember.js."],
+    ["Node.js is an open-source, cross-platform JavaScript runtime environment that allows developers to run JavaScript code outside of a web browser. It uses the V8 JavaScript engine from Google Chrome and provides a set of APIs for building server-side applications."],
+    ["The event loop is a fundamental concept in Node.js that allows it to handle asynchronous operations efficiently. It continuously checks for events and executes associated callbacks when an event occurs, such as I/O operations completing or timers expiring. This non-blocking nature enables Node.js to handle multiple requests concurrently without getting blocked by long-running operations."],
+    ["npm (Node Package Manager) is the default package manager for Node.js, used to install, manage, and publish packages/modules for Node.js applications. You can use npm to install packages from the npm registry, manage dependencies for your projects, and run scripts defined in the package.json file."],
+    ["In Node.js, errors can be handled using try-catch blocks for synchronous code or by passing error objects to callback functions or using promises for asynchronous code. Additionally, you can use middleware functions in frameworks like Express.js to handle errors globally and provide custom error handling logic."]
+];
+  
+  const alternative = [
+    "Same here, dude.",
+    "That's cool! Go on...",
+    "Dude...",
+    "Ask something else...",
+    "Hey, I'm listening..."
+  ];
+  
+  const synth = window.speechSynthesis;
+  
+  function voiceControl(string) {
+    let u = new SpeechSynthesisUtterance(string);
+    u.text = string;
+    u.lang = "en-aus";
+    u.volume = 1;
+    u.rate = 1;
+    u.pitch = 1;
+    synth.speak(u);
+  }
+  
+  function sendMessage() {
+    const inputField = document.getElementById("input");
+    let input = inputField.value.trim();
+    input != "" && output(input);
+    inputField.value = "";
+  }
+  document.addEventListener("DOMContentLoaded", () => {
+    const inputField = document.getElementById("input");
+    inputField.addEventListener("keydown", function (e) {
+      if (e.code === "Enter") {
+        let input = inputField.value.trim();
+        input != "" && output(input);
+        inputField.value = "";
+      }
+    });
+  });
+  
+  function output(input) {
+    let product;
+  
+    let text = input.toLowerCase().replace(/[^\w\s\d]/gi, "");
+  
+    text = text
+      .replace(/[\W_]/g, " ")
+      .replace(/ a /g, " ")
+      .replace(/i feel /g, "")
+      .replace(/whats/g, "what is")
+      .replace(/please /g, "")
+      .replace(/ please/g, "")
+      .trim();
+  
+    let comparedText = compare(userMessage, botReply, text);
+  
+    product = comparedText
+      ? comparedText
+      : alternative[Math.floor(Math.random() * alternative.length)];
+    addChat(input, product);
+  }
+  
+  function compare(triggerArray, replyArray, string) {
+    let item;
+    for (let x = 0; x < triggerArray.length; x++) {
+      for (let y = 0; y < replyArray.length; y++) {
+        if (triggerArray[x][y] == string) {
+          items = replyArray[x];
+          item = items[Math.floor(Math.random() * items.length)];
+        }
+      }
+    }
+    //containMessageCheck(string);
+    if (item) return item;
+    else return containMessageCheck(string);
+  }
+  
+  function containMessageCheck(string) {
+    let expectedReply = [
+      [
+        "Good Bye, dude",
+        "Bye, See you!",
+        "Dude, Bye. Take care of your health in this situation."
+      ],
+      ["Good Night, dude", "Have a sound sleep", "Sweet dreams"],
+      ["Have a pleasant evening!", "Good evening too", "Evening!"],
+      ["Good morning, Have a great day!", "Morning, dude!"],
+      ["Good Afternoon", "Noon, dude!", "Afternoon, dude!"]
+    ];
+    let expectedMessage = [
+      ["bye", "tc", "take care"],
+      ["night", "good night"],
+      ["evening", "good evening"],
+      ["morning", "good morning"],
+      ["noon"]
+    ];
+    let item;
+    for (let x = 0; x < expectedMessage.length; x++) {
+      if (expectedMessage[x].includes(string)) {
+        items = expectedReply[x];
+        item = items[Math.floor(Math.random() * items.length)];
+      }
+    }
+    return item;
+  }
+  function addChat(input, product) {
+    const mainDiv = document.getElementById("message-section");
+    let userDiv = document.createElement("div");
+    userDiv.id = "user";
+    userDiv.classList.add("message");
+    userDiv.innerHTML = `<span id="user-response">${input}</span>`;
+    mainDiv.appendChild(userDiv);
+  
+    let botDiv = document.createElement("div");
+    botDiv.id = "bot";
+    botDiv.classList.add("message");
+    botDiv.innerHTML = `<span id="bot-response">${product}</span>`;
+    mainDiv.appendChild(botDiv);
+    var scroll = document.getElementById("message-section");
+    scroll.scrollTop = scroll.scrollHeight;
+    voiceControl(product);
+  }
+  </script>
+</body>
+</html>

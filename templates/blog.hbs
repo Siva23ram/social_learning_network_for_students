@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+ 
+    <style>@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Forum&display=swap");
+
+:root{
+  --primary-color: #12c2b9;
+  --secondary: #dbfffe;
+  --black: #141414;
+  --white: #fff;
+  --box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+*{
+  font-family: 'DM Sans', sans-serif;
+  margin: 0; padding: 0;
+  box-sizing: border-box;
+  outline: none; border: none;
+  text-decoration: none;
+  text-transform: capitalize;
+  transition: all .2s linear;
+}
+
+html{
+  font-size: 62.5%;
+  overflow-x: hidden;
+  scroll-padding-top: 9rem;
+  scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar{
+  width: 1rem;
+}
+
+html::-webkit-scrollbar-track{
+  background: transparent;
+}
+
+html::-webkit-scrollbar-thumb{
+  background: var(--primary-color);
+}
+
+section{
+  padding: 5rem 7%;
+}
+
+.heading{
+  position: relative;
+  color: var(--primary-color);
+  font-size: 3rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .4rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  margin-top: 100px;;
+}
+
+.heading::after{
+  content: url('../images/separator.svg');
+  display: block;
+  width: 10rem;
+  margin-inline: auto;
+  margin-top: -1rem;
+}
+
+
+.shine{
+    position: relative;
+  }
+  
+  .shine::after{
+    content: "";
+    position: absolute;
+    top: 0; left: 0; 
+    width: 50%;
+    height: 100%;
+    background-image: linear-gradient(to right, transparent 0%, #fff6 100%);
+    transform: skewX(-0.08turn) translateX(-180%);
+  }
+  
+  .shine:is(:hover, :focus-within)::after{
+    transform: skewX(-0.08turn) translateX(275%);
+    transition: 1000ms ease;
+  }
+  
+  
+  /* header */
+  
+  .header{
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: var(--white);
+    box-shadow: var(--box-shadow);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 9%;
+  }
+  
+  .header .logo{
+    font-size: 2.5rem;
+    font-weight: bolder;
+    color: var(--black);
+  }
+  
+  .header .logo i{
+    color: var(--primary-color);
+    padding-right: .5rem;
+  }
+  
+  .header .navbar a{
+    font-size: 1.7rem;
+    color: var(--black);
+    margin: 0 1rem;
+    padding-block: 1rem;
+  }
+  
+  .header .navbar a:hover{
+    color: var(--primary-color);
+  }
+  
+  .header .navbar .hover-underline{
+    position: relative;
+    max-width: max-content;
+  }
+  
+  .header .navbar .hover-underline::after{
+    content: '';
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 100%;
+    height: .5rem;
+    border-block: .1rem solid var(--primary-color);
+    transform: scaleX(0.2);
+    opacity: 0;
+    transition: 500ms ease;
+  }
+  
+  .header .navbar .hover-underline:is(:hover, :focus-visible)::after{
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  
+  .header .icons div{
+    font-size: 2.5rem;
+    margin-left: 1.7rem;
+    color: var(--black);
+    cursor: pointer;
+  }
+  
+  .header .icons div:hover{
+    color: var(--primary-color);
+  }
+  
+  #menu-btn{
+    display: none;
+  }
+  
+  .header .login-form{
+    position: absolute;
+    top: 115%; right: -105%;
+    background: var(--white);
+    box-shadow: .5rem;
+    width: 35rem;
+    box-shadow: var(--box-shadow);
+    padding: 2rem;
+  }
+  
+  .header .login-form.active{
+    right: 2rem;
+    transition: .4s linear;
+  }
+  
+  .header .login-form h3{
+    font-size: 2.2rem;
+    color: var(--black);
+    text-align: center;
+    margin-bottom: .7rem;
+  }
+  
+  .header .login-form .box{
+    font-size: 1.5rem;
+    margin: .7rem 0;
+    border: .1rem solid rgba(0, 0, 0, 0.1);
+    padding: 1rem 1.2rem;
+    color: var(--black);
+    text-transform: none;
+    width: 100%;
+  }
+  
+  .header .login-form .remember{
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    margin: .7rem 0;
+  }
+  
+  .header .login-form .remember label{
+    font-size: 1.5rem;
+    color: var(--black);
+    cursor: pointer;
+  }
+
+/* blog */
+
+.blog .box-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .blog .box-container .box{
+    box-shadow: var(--box-shadow);
+    border-radius: 2rem;
+  }
+  
+  .blog .box-container .box .image{
+    height: 25rem;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    border-radius: 2rem 2rem 0 0;
+  }
+  
+  .blog .box-container .box .image img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+  
+  .blog .box-container .box:hover .image img{
+    transform: scale(1.1);
+  }
+  
+  .blog .box-container .box .image h3{
+    font-size: 1.5rem;
+    color: #444;
+    position: absolute;
+    top: 1.5rem; left: 1rem;
+    padding: .5rem 1.5rem;
+    background: var(--white);
+    border-radius: 2rem 0 2rem 0;
+  }
+  
+  .blog .box-container .box .content{
+    padding: 2rem 2rem;
+    background: var(--secondary);
+    border-radius: 0 0 2rem 2rem;
+  }
+  
+  .blog .box-container .box .content .icons{
+    margin-bottom: 1rem;
+    align-items: center;
+  }
+  
+  .blog .box-container .box .content .icons a{
+    font-size: 1.4rem;
+    color: var(--primary-color);
+  }
+  
+  .blog .box-container .box .content .icons a i{
+    padding-right: .5rem;
+  }
+  
+  .blog .box-container .box .content h3{
+    font-size: 2.2rem;
+    color: var(--black);
+  }
+  
+  .blog .box-container .box .content p{
+    font-size: 1.5rem;
+    color: var(--black);
+    line-height: 2;
+    padding: 1rem 0;
+  }
+  
+  /* ends */
+
+/* footer */
+
+.footer{
+    background: var(--secondary);
+    text-align: center;
+  }
+  
+  .footer .box-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    gap: 2rem;
+  }
+  
+  .footer .box-container .box h3{
+    font-size: 2.2rem;
+    color: var(--primary-color);
+    padding: 1rem 0;
+  }
+  
+  .footer .box-container .box p{
+    font-size: 1.5rem;
+    color: var(--black);
+    line-height: 2;
+    padding: 1rem 0;
+  }
+  
+  .footer .box-container .box .share{
+    margin-top: 1rem;
+  }
+  
+  .footer .box-container .box .share a{
+    height: 4.5rem;
+    width: 4.5rem;
+    line-height: 4.5rem;
+    border-radius: 10%;
+    font-size: 1.7rem;
+    border: .1rem solid var(--primary-color);
+    color: var(--primary-color);
+    margin-right: .3rem;
+    text-align: center;
+  }
+  
+  .footer .box-container .box .share a:hover{
+    background: var(--primary-color);
+    color: var(--white);
+  }
+  
+  .footer .box-container .box .link{
+    font-size: 1.7rem;
+    line-height: 2;
+    color: var(--black);
+    padding: .5rem 0;
+    display: block;
+  }
+  
+  .footer .box-container .box .link:hover{
+    color: var(--primary-color);
+    text-decoration: underline;
+  }
+  
+  .footer .credit{
+    font-size: 2rem;
+    margin-top: 3rem;
+    padding-top: 3rem;
+    text-align: center;
+    color: var(--black);
+    border-top: .1rem solid var(--primary-color);
+  }
+  
+  .footer .credit span{
+    color: var(--primary-color);
+  }
+  
+  /* ends */
+  
+  /* media queries */
+  
+  @media (max-width:991px){
+  
+    html{
+      font-size: 55%;
+    }
+  
+    .header{
+      padding: 2rem 4rem;
+    }
+  
+    section{
+      padding: 3rem 2rem;
+    }
+  
+  }
+  
+  @media (max-width:768px){
+  
+    #menu-btn{
+      display: inline-block;
+    }
+  
+    .header .navbar{
+      position: absolute;
+      top: 110%; right: -110%;
+      width: 30rem;
+      box-shadow: var(--box-shadow);
+      border-radius: .5rem;
+      background: var(--white);
+    }
+  
+    .header .navbar.active{
+      right: 2rem;
+      transition: .4s linear;
+    }
+  
+    .header .navbar a{
+      font-size: 2rem;
+      margin: 1rem 2.5rem;
+      display: block;
+    }
+  
+    .home .content h3{
+      font-size: 3rem;
+    }
+  
+    .about .container .about-content{
+      padding-left: 0;
+    }
+  
+  }
+  
+  @media (max-width:450px){
+    html{
+      font-size: 50%;
+    }
+  }  </style>
+</head>
+<body>
+    <header class="header">
+
+        <a href="#" class="logo"><i class="fas fa-book"></i> education</a>
+
+        <nav class="navbar">
+            <a href="/index" class="hover-underline">home</a>
+            <a href="/about" class="hover-underline">about</a>
+            <a href="/courses" class="hover-underline">courses</a>
+            <a href="/teacher" class="hover-underline">teacher</a>
+            <a href="/todolist" class="hover-underline">todolist</a>
+            <a href="/review" class="hover-underline">review</a>
+            <a href="/blog" class="hover-underline">blog</a>
+            <a href="/contact" class="hover-underline">contact</a>
+            <a href="/chatbot" class="hover-underline">chatwithus</a>
+              <a href="https://www.overleaf.com/latex/templates/altacv-template/trgqjpwnmtgv"  class="hover-underline">CV/Resume</a>
+        </nav>
+       
+        </header>
+
+        
+        
+
+
+    </header>
+
+    <!-- header section ends -->
+
+
+    <!-- blog section starts -->
+
+    <section class="blog" id="blog">
+
+        <h1 class="heading">our blogs</h1>
+
+        <div class="box-container">
+
+            <div class="box">
+                <div class="image shine">
+                    <img src="http://127.0.0.1:5500/School%20website/images/blog-1.jpg" alt="">
+                    <h3>01 April 2024</h3>
+                </div>
+                <div class="content">
+                    <div class="icons">
+                        <a href="#"><i class="fas fa-user"></i>by admin</a>
+                    </div>
+                    <h3>we have best courses for you</h3>
+                    <p>elearning industry.</p>
+                    <a href="#" class="btn">
+                        <span class="text text-1">read more</span>
+                        <span class="text text-2" aria-hidden="true">read more</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="image shine">
+                    <img src="http://127.0.0.1:5500/School%20website/images/blog-2.jpg" alt="">
+                    <h3>01 April 2024</h3>
+                </div>
+                <div class="content">
+                    <div class="icons">
+                        <a href="#"><i class="fas fa-user"></i>by admin</a>
+                    </div>
+                    <h3>we have best courses for you</h3>
+                    <p>Educational Technology and Mobile Learning</p>
+                    <a href="#" class="btn">
+                        <span class="text text-1">read more</span>
+                        <span class="text text-2" aria-hidden="true">read more</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="image shine">
+                    <img src="http://127.0.0.1:5500/School%20website/images/blog-3.jpg" alt="">
+                    <h3>01 April 2024</h3>
+                </div>
+                <div class="content">
+                    <div class="icons">
+                        <a href="#"><i class="fas fa-user"></i>by admin</a>
+                    </div>
+                    <h3>we have best courses for you</h3>
+                    <p>Teach Thought</p>
+                    <a href="#" class="btn">
+                        <span class="text text-1">read more</span>
+                        <span class="text text-2" aria-hidden="true">read more</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- blog section ends -->
+
+   <section class="footer">
+
+        <div class="box-container">
+
+            <div class="box">
+                <h3>find us here</h3>
+                <p>Our Social Platforms</p>
+                <div class="share">
+                    <a href="https://www.facebook.com/loknath.m.7" class="fab fa-facebook-f"></a>
+                    <a href="https://twitter.com/loknathreddy_M" class="fab fa-twitter"></a>
+                    <a href="https://www.instagram.com/loknath.__.1811/" class="fab fa-instagram"></a>
+                    <a href="https://www.instagram.com/loknath.__.1811/" class="fab fa-linkedin"></a>
+                </div>
+            </div>
+
+            <div class="box">
+                <h3>contact us</h3>
+                <p>+91 9121952027</p>
+                <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox" class="link">Gmail</a>
+            </div>
+
+            <div class="box">
+                <h3>localization</h3>
+                <p>proddatur</p>
+            </div>
+
+        </div>
+        <div class="credit">created by <span>ninjashub </span>| all rights are reserved!</div>
+    </section>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <!-- custom js -->
+    <script src="js/script.js"></script>
+
+</body>
+</html>

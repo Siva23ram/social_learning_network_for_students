@@ -1,0 +1,1604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <!-- custom css link -->
+<style>
+   @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Forum&display=swap");
+
+:root{
+  --primary-color: #12c2b9;
+  --secondary: #dbfffe;
+  --black: #141414;
+  --white: #fff;
+  --box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+*{
+  font-family: 'DM Sans', sans-serif;
+  margin: 0; padding: 0;
+  box-sizing: border-box;
+  outline: none; border: none;
+  text-decoration: none;
+  text-transform: capitalize;
+  transition: all .2s linear;
+}
+
+html{
+  font-size: 62.5%;
+  overflow-x: hidden;
+  scroll-padding-top: 9rem;
+  scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar{
+  width: 1rem;
+}
+
+html::-webkit-scrollbar-track{
+  background: transparent;
+}
+
+html::-webkit-scrollbar-thumb{
+  background: var(--primary-color);
+}
+
+section{
+  padding: 5rem 7%;
+}
+
+.heading{
+  position: relative;
+  color: var(--primary-color);
+  font-size: 3rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .4rem;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.heading::after{
+  content: url('../images/separator.svg');
+  display: block;
+  width: 10rem;
+  margin-inline: auto;
+  margin-top: -1rem;
+}
+
+.btn{
+  position: relative;
+  display: inline-block;
+  margin-top: 1rem;
+  color: var(--primary-color);
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  max-width: max-content;
+  border: .1rem solid var(--primary-color);
+  background: var(--secondary);
+  padding: 1.2rem 4.5rem;
+  overflow: hidden;
+  z-index: 1;
+  border-radius: .5rem;
+}
+
+.btn::before{
+  content: "";
+  position: absolute;
+  bottom: 100%; left: 50%;
+  transform: translateX(-50%);
+  width: 200%; height: 200%;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  transition: 500ms ease;
+  z-index: -1;
+}
+
+.btn .text{
+  transition: 250ms ease;
+}
+
+.btn .text-2{
+  position: absolute;
+  top: 100%; left: 50%;
+  transform: translateX(-50%);
+  min-width: max-content;
+  color: var(--secondary);
+}
+
+.btn:is(:hover, :focus-visible)::before{
+  bottom: -50%;
+}
+
+.btn:is(:hover, :focus-visible) .text-1{
+  transform: translateY(-4rem);
+}
+
+.btn:is(:hover, :focus-visible) .text-2{
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.shine{
+  position: relative;
+}
+
+.shine::after{
+  content: "";
+  position: absolute;
+  top: 0; left: 0; 
+  width: 50%;
+  height: 100%;
+  background-image: linear-gradient(to right, transparent 0%, #fff6 100%);
+  transform: skewX(-0.08turn) translateX(-180%);
+}
+
+.shine:is(:hover, :focus-within)::after{
+  transform: skewX(-0.08turn) translateX(275%);
+  transition: 1000ms ease;
+}
+
+/* header */
+
+.header{
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: var(--white);
+  box-shadow: var(--box-shadow);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 9%;
+}
+
+.header .logo{
+  font-size: 2.5rem;
+  font-weight: bolder;
+  color: var(--black);
+}
+
+.header .logo i{
+  color: var(--primary-color);
+  padding-right: .5rem;
+}
+
+.header .navbar a{
+  font-size: 1.7rem;
+  color: var(--black);
+  margin: 0 1rem;
+  padding-block: 1rem;
+}
+
+.header .navbar a:hover{
+  color: var(--primary-color);
+}
+
+.header .navbar .hover-underline{
+  position: relative;
+  max-width: max-content;
+}
+
+.header .navbar .hover-underline::after{
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%;
+  height: .5rem;
+  border-block: .1rem solid var(--primary-color);
+  transform: scaleX(0.2);
+  opacity: 0;
+  transition: 500ms ease;
+}
+
+.header .navbar .hover-underline:is(:hover, :focus-visible)::after{
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+.header .icons div{
+  font-size: 2.5rem;
+  margin-left: 1.7rem;
+  color: var(--black);
+  cursor: pointer;
+}
+
+.header .icons div:hover{
+  color: var(--primary-color);
+}
+
+#menu-btn{
+  display: none;
+}
+
+.header .login-form{
+  position: absolute;
+  top: 115%; right: -105%;
+  background: var(--white);
+  box-shadow: .5rem;
+  width: 35rem;
+  box-shadow: var(--box-shadow);
+  padding: 2rem;
+}
+
+.header .login-form.active{
+  right: 2rem;
+  transition: .4s linear;
+}
+
+.header .login-form h3{
+  font-size: 2.2rem;
+  color: var(--black);
+  text-align: center;
+  margin-bottom: .7rem;
+}
+
+.header .login-form .box{
+  font-size: 1.5rem;
+  margin: .7rem 0;
+  border: .1rem solid rgba(0, 0, 0, 0.1);
+  padding: 1rem 1.2rem;
+  color: var(--black);
+  text-transform: none;
+  width: 100%;
+}
+
+.header .login-form .remember{
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin: .7rem 0;
+}
+
+.header .login-form .remember label{
+  font-size: 1.5rem;
+  color: var(--black);
+  cursor: pointer;
+}
+
+/* home */
+
+.home{
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: url(http://127.0.0.1:5500/School%20website/images/home.jpg) no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.home .content{
+  max-width: 50rem;
+}
+
+.home .content h3{
+  font-size: 5rem;
+  color: var(--white);
+  line-height: 1.2;
+}
+
+.home .content p{
+  font-size: 1.5rem;
+  line-height: 2;
+  color: var(--white);
+  padding: 1rem 0;
+}
+
+/* ends */
+
+/* about */
+
+.about .container{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.about .container .about-image{
+  position: relative;
+  flex: 1 1 40rem;
+}
+
+.about .container .about-image img{
+  width: 80%;
+}
+
+.about .container .about-image .about-img{
+  position: absolute;
+  bottom: -10rem;
+  right: -1rem;
+  width: 25rem;
+  padding-block: 5rem;
+}
+
+.about .container .about-content{
+  flex: 1 1 50rem;
+  padding-left: 6rem;
+  padding-top: 8rem;
+}
+
+.about .container .about-content h3{
+  font-size: 3rem;
+  color: var(--primary-color);
+}
+
+.about .container .about-content p{
+  font-size: 1.6rem;
+  color: #444;
+  padding: 1rem 0;
+  line-height: 1.8;
+}
+
+/* ends */
+
+/* subjects */
+
+.subjects .box-container{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  gap: 2rem;
+}
+
+.subjects .box-container .box{
+  padding: 3rem 2rem;
+  text-align: center;
+  border: .1rem solid var(--primary-color);
+  background: var(--secondary);
+  cursor: pointer;
+}
+
+.subjects .box-container .box:hover{
+  background: var(--primary-color);
+}
+
+.subjects .box-container .box img{
+  height: 10rem;
+  margin-bottom: .7rem;
+}
+
+.subjects .box-container .box h3{
+  font-size: 1.7rem;
+  color: #444;
+  padding: .5rem 0;
+  text-transform: capitalize;
+}
+
+.subjects .box-container .box:hover h3{
+  color: #fff;
+}
+
+.subjects .box-container .box p{
+  font-size: 1.5rem;
+  line-height: 2;
+  color: #777;
+}
+
+.subjects .box-container .box:hover p{
+  color: #eee;
+}
+
+/* end */
+
+/* courses */
+
+.courses .box-container{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  gap: 2rem;
+}
+
+.courses .box-container .box .image{
+  height: 25rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.courses .box-container .box .image img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.courses .box-container .box:hover .image img{
+  transform: scale(1.1);
+}
+
+.courses .box-container .box .image h3{
+  font-size: 1.5rem;
+  color: #444;
+  position: absolute;
+  top: 1rem; left: 1rem;
+  padding: .5rem 1.5rem;
+  background: var(--white);
+}
+
+.courses .box-container .box .content{
+  padding: 2rem;
+  position: relative;
+  border: 0.1rem solid var(--primary-color);
+}
+
+.courses .box-container .box .content h4{
+  position: absolute;
+  background: var(--primary-color);
+  color: var(--secondary);
+  top: -3rem; right: 1.5rem;
+  width: 6rem; 
+  height: 6rem;
+  line-height: 6rem;
+  text-align: center;
+  font-size: 1.4rem;
+  border-radius: 50%;
+}
+
+.courses .box-container .box .content p{
+  font-size: 1.4rem;
+  color: #444;
+  line-height: 2;
+}
+
+.courses .box-container .box .content h3{
+  font-size: 2rem;
+  color: #444;
+}
+
+.courses .box-container .box .content .stars{
+  padding: 1rem 0;
+}
+
+.courses .box-container .box .content .stars i{
+  font-size: 1.7rem;
+  color: var(--primary-color);
+}
+
+.courses .box-container .box .content .stars span{
+  font-size: 1.4rem;
+  color: #777;
+  margin-left: .5rem;
+}
+
+.courses .box-container .box .content .icons{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 0.1rem solid var(--primary-color);
+}
+
+.courses .box-container .box .content .icons span{
+  font-size: 1.5rem;
+  color: #444;
+}
+
+.courses .box-container .box .content .icons span i{
+  color: var(--primary-color);
+  padding-right: .5rem;
+}
+
+  .course-button {
+    color: white;
+    background-color: #12c2b9;
+    border: none; /* Remove border */
+    padding: 10px 10px; /* Padding */
+    text-align: center; /* Center text */
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Make it an inline-block element */
+    font-size: 16px; /* Font size */
+    margin: 4px 2px; /* Margin */
+    cursor: pointer; /* Add cursor pointer on hover */
+    border-radius: 8px; /* Rounded corners */
+  }
+  
+  .course-buttons{
+    color: white;
+    background-color: #12c2b9;
+    border: none; /* Remove border */
+    padding: 10px 10px; /* Padding */
+    text-align: center; /* Center text */
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Make it an inline-block element */
+    font-size: 16px; /* Font size */
+    margin: 4px 2px; /* Margin */
+    cursor: pointer; /* Add cursor pointer on hover */
+    border-radius: 8px; /* Rounded corners */
+    margin-left: 130px;
+
+  }
+  
+  /* Hover effect */
+  .course-button:hover {
+    background-color: #e67e22; /* Darker orange on hover */
+  }
+  .course-buttons:hover {
+    background-color: #e67e22; /* Darker orange on hover */
+  }
+  
+
+/* ends */
+
+/* teacher */
+
+.teacher .box-container{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  gap: 2rem;
+}
+
+.teacher .box-container .box{
+  background: var(--white);
+  box-shadow: var(--box-shadow);
+  border-radius: .5rem;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.teacher .box-container .box .image{
+  position: relative;
+  overflow: hidden;
+}
+
+.teacher .box-container .box .image img{
+  background: var(--secondary);
+  width: 100%;
+}
+
+.teacher .box-container .box:hover .image .share{
+  bottom: 0;
+}
+
+.teacher .box-container .box .image .share{
+  position: absolute;
+  bottom: -10rem; 
+  left: 0; right: 0;
+  padding: 2rem;
+}
+
+.teacher .box-container .box .image .share a{
+  height: 4rem;
+  width: 4rem;
+  line-height: 4rem;
+  font-size: 2rem;
+  margin: 0 1rem;
+  color: var(--secondary);
+  background: var(--primary-color);
+  border-radius: .5rem;
+}
+
+.teacher .box-container .box .image .share a:hover{
+  color: var(--primary-color);
+  background: var(--secondary);
+}
+
+.teacher .box-container .box .content{
+  padding: 2rem;
+  padding-top: 1rem;
+  align-items: center;
+}
+
+.teacher .box-container .box .content h3{
+  font-size: 2rem;
+  color: var(--black);
+}
+
+.teacher .box-container .box .content span{
+  font-size: 1.5rem;
+  line-height: 2;
+  color: #777;
+}
+
+/* ends */
+
+/* review */
+
+.review .slide{
+  padding: 1.5rem;
+  box-shadow: var(--box-shadow);
+  border: 0.1rem solid rgba(0, 0, 0, 0.1);
+  border-radius: 2rem;
+  position: relative;
+}
+
+.review .slide p{
+  font-size: 1.5rem;
+  text-align: center;
+  padding-bottom: .5rem;
+  line-height: 1.8;
+  color: #444;
+}
+
+.review .slide .wrapper{
+  display: flex;
+  justify-content: center;
+  gap: .3rem;
+}
+
+.review .slide .wrapper .separator{
+  width: .8rem;
+  height: .8rem;
+  border: .1rem solid var(--primary-color);
+  transform: rotate(45deg);
+  animation: rotate360 15s linear infinite;
+}
+
+@keyframes rotate360{
+  0%{
+    transform: rotate(0);
+  }
+  100%{
+    transform: rotate(1turn);
+  }
+}
+
+.review .slide .fa-quote-right{
+  position: absolute;
+  bottom: 3rem; right: 3rem;
+  font-size: 6rem;
+  color: var(--secondary);
+}
+
+.review .slide .user{
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1rem 1.5rem;
+  border-radius: .5rem;
+}
+
+.review .slide .user img{
+  height: 7rem;
+  width: 7rem;
+  border-radius: 15%;
+  object-fit: cover;
+  border: .1rem solid var(--primary-color);
+  padding: .5rem;
+}
+
+.review .slide .user h3{
+  font-size: 2rem;
+  color: var(--black);
+  padding-bottom: .5rem;
+}
+
+.review .slide .user .stars i{
+  font-size: 1.3rem;
+  color: var(--primary-color);
+}
+
+/* ends */
+
+/* blog */
+
+.blog .box-container{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  gap: 1.5rem;
+}
+
+.blog .box-container .box{
+  box-shadow: var(--box-shadow);
+  border-radius: 2rem;
+}
+
+.blog .box-container .box .image{
+  height: 25rem;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  border-radius: 2rem 2rem 0 0;
+}
+
+.blog .box-container .box .image img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.blog .box-container .box:hover .image img{
+  transform: scale(1.1);
+}
+
+.blog .box-container .box .image h3{
+  font-size: 1.5rem;
+  color: #444;
+  position: absolute;
+  top: 1.5rem; left: 1rem;
+  padding: .5rem 1.5rem;
+  background: var(--white);
+  border-radius: 2rem 0 2rem 0;
+}
+
+.blog .box-container .box .content{
+  padding: 2rem 2rem;
+  background: var(--secondary);
+  border-radius: 0 0 2rem 2rem;
+}
+
+.blog .box-container .box .content .icons{
+  margin-bottom: 1rem;
+  align-items: center;
+}
+
+.blog .box-container .box .content .icons a{
+  font-size: 1.4rem;
+  color: var(--primary-color);
+}
+
+.blog .box-container .box .content .icons a i{
+  padding-right: .5rem;
+}
+
+.blog .box-container .box .content h3{
+  font-size: 2.2rem;
+  color: var(--black);
+}
+
+.blog .box-container .box .content p{
+  font-size: 1.5rem;
+  color: var(--black);
+  line-height: 2;
+  padding: 1rem 0;
+}
+
+/* ends */
+
+/* contact */
+
+.contact .row{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2rem;
+}
+
+.contact .row .image{
+  flex: 1 1 40rem;
+}
+
+.contact .row .image img{
+  width: 100%;
+}
+
+.contact .row form{
+  flex: 1 1 40rem;
+  border: 0.1rem solid var(--primary-color);
+  padding: 2rem;
+}
+
+.contact .row form h3{
+  font-size: 2.5rem;
+  color: #444;
+  padding-bottom: 1rem;
+}
+
+.contact .row form .box{
+  width: 100%;
+  font-size: 1.6rem;
+  padding: 1.2rem 1.4rem;
+  border: .1rem solid var(--primary-color);
+  margin: .7rem 0;
+}
+
+.contact .row form .box:focus{
+  color: var(--primary-color);
+}
+
+.contact .row form textarea{
+  height: 15rem;
+  resize: none;
+}
+
+/* ends */
+
+/* footer */
+
+.footer{
+  background: var(--secondary);
+  text-align: center;
+}
+
+.footer .box-container{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  gap: 2rem;
+}
+
+.footer .box-container .box h3{
+  font-size: 2.2rem;
+  color: var(--primary-color);
+  padding: 1rem 0;
+}
+
+.footer .box-container .box p{
+  font-size: 1.5rem;
+  color: var(--black);
+  line-height: 2;
+  padding: 1rem 0;
+}
+
+.footer .box-container .box .share{
+  margin-top: 1rem;
+}
+
+.footer .box-container .box .share a{
+  height: 4.5rem;
+  width: 4.5rem;
+  line-height: 4.5rem;
+  border-radius: 10%;
+  font-size: 1.7rem;
+  border: .1rem solid var(--primary-color);
+  color: var(--primary-color);
+  margin-right: .3rem;
+  text-align: center;
+}
+
+.footer .box-container .box .share a:hover{
+  background: var(--primary-color);
+  color: var(--white);
+}
+
+.footer .box-container .box .link{
+  font-size: 1.7rem;
+  line-height: 2;
+  color: var(--black);
+  padding: .5rem 0;
+  display: block;
+}
+
+.footer .box-container .box .link:hover{
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+.footer .credit{
+  font-size: 2rem;
+  margin-top: 3rem;
+  padding-top: 3rem;
+  text-align: center;
+  color: var(--black);
+  border-top: .1rem solid var(--primary-color);
+}
+
+.footer .credit span{
+  color: var(--primary-color);
+}
+
+/* ends */
+
+/* media queries */
+
+@media (max-width:991px){
+
+  html{
+    font-size: 55%;
+  }
+
+  .header{
+    padding: 2rem 4rem;
+  }
+
+  section{
+    padding: 3rem 2rem;
+  }
+
+}
+
+@media (max-width:768px){
+
+  #menu-btn{
+    display: inline-block;
+  }
+
+  .header .navbar{
+    position: absolute;
+    top: 110%; right: -110%;
+    width: 30rem;
+    box-shadow: var(--box-shadow);
+    border-radius: .5rem;
+    background: var(--white);
+  }
+
+  .header .navbar.active{
+    right: 2rem;
+    transition: .4s linear;
+  }
+
+  .header .navbar a{
+    font-size: 2rem;
+    margin: 1rem 2.5rem;
+    display: block;
+  }
+
+  .home .content h3{
+    font-size: 3rem;
+  }
+
+  .about .container .about-content{
+    padding-left: 0;
+  }
+
+}
+
+@media (max-width:450px){
+  html{
+    font-size: 50%;
+  }
+}
+
+
+</style>
+</head>
+<body>
+    
+    <!-- header section starts -->
+
+    <header class="header">
+
+        <a href="#" class="logo"><i class="fas fa-book"></i> education</a>
+
+        <nav class="navbar">
+            <a href="/index" class="hover-underline">home</a>
+            <a href="/about" class="hover-underline">about</a>
+            <a href="/courses" class="hover-underline">courses</a>
+            <a href="/teacher" class="hover-underline">teacher</a>
+            <a href="/todolist" class="hover-underline">todolist</a>
+            <a href="/review" class="hover-underline">review</a>
+            <a href="/blog" class="hover-underline">blog</a>
+            <a href="/contact" class="hover-underline">contact</a>
+            <a href="/chatbot" class="hover-underline">chatwithus</a>
+              <a href="https://www.overleaf.com/latex/templates/altacv-template/trgqjpwnmtgv"  class="hover-underline">CV/Resume</a>
+        </nav>
+
+        
+
+    </header>
+
+    <!-- header section ends -->
+
+    <!-- home section starts-->
+
+    <section class="home" id="home">
+
+        <div class="content">
+            <h3>the best courses you will find here</h3>
+            <p>"Empowering students to lead, innovate, and collaborate: harnessing the power of our collective intelligence"</p>
+            <!-- <a href="#" class="btn">
+                <span class="text text-1">learn more</span>
+                <span class="text text-2" aria-hidden="true">learn more</span>
+            </a>     -->
+        </div>
+
+    </section>
+
+    <!-- home section ends -->
+
+    <!-- about section starts -->
+
+    <section class="about" id="about">
+
+        <h1 class="heading">about us</h1>
+
+        <div class="container">
+
+            <figure class="about-image">
+                <img src="http://127.0.0.1:5500/School%20website/images/about.jpg" alt="" height="500">
+                <img src="http://127.0.0.1:5500/School%20website/images/about-1.jpg" alt="" class="about-img">
+            </figure>
+
+            <div class="about-content">
+                <h3>18 years of experience</h3>
+                <p>Welcome to  Social Learning Network, where learning transcends boundaries and collaboration fuels innovation. With over 18 years of dedicated experience, we have been at the forefront of revolutionizing education through digital connectivity.</p>
+                <p>Our platform is not just a place to consume information; it's a vibrant community where ideas are exchanged, knowledge is co-created, and friendships are formed. With features designed to foster interaction, such as discussion forums, group projects, and live tutoring sessions, we empower you to engage deeply with your peers and educators.</p>    
+                <a href="/about" class="btn">
+                    <span class="text text-1">read more</span>
+                    <span class="text text-2" aria-hidden="true">read more</span>
+                </a>        
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- about section ends -->
+
+    <!-- subjects section starts -->
+
+    <section class="subjects">
+
+        <h1 class="heading">our popular subjects</h1>
+
+        <div class="box-container">
+
+            <div class="box">
+                <img src="http://127.0.0.1:5500/School%20website/career.jpg" alt="">
+                <h3>Career development</h3>
+                <p>fun & challenging</p>
+            </div>
+
+            <div class="box">
+                <img src="http://127.0.0.1:5500/School%20website/fsd.jpg" alt="">
+                <h3>Full stack develepoment</h3>
+                <p>fun & challenging</p>
+            </div>
+
+            <div class="box">
+                <img src="http://127.0.0.1:5500/School%20website/ml.jpeg" alt="">
+                <h3>Machine Learning</h3>
+                <p>fun & challenging</p>
+            </div>
+
+            <div class="box">
+                <img src="http://127.0.0.1:5500/School%20website/ai.jpg" alt="">
+                <h3>Artificial intelligence</h3>
+                <p>fun & challenging</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- subject section ends -->
+
+    <!-- courses section starts -->
+
+     
+    <section class="courses" id="courses">
+
+        <h1 class="heading">our famous courses</h1>
+
+        <div class="box-container">
+
+            <div class="box">
+                <div class="image shine">
+                    <img src="http://127.0.0.1:5500/School%20website/images/java.jpg" alt="">
+                   
+                </div>
+                <div class="content">
+                    <p>updated 25/09/2021</p>
+                    <h3>Java</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>(785)</span><br><br>
+                        <a href="https://www.coursera.org/courses?query=java"><button class="course-button">Courses</button></a>
+                        <a href="https://youtu.be/ntLJmHOJ0ME?si=egGCKvSVd5GVWgmg"><button class="course-buttons">Youtube</button></a>
+                    </div>
+                    <div class="icons">
+                        <!-- <span><i class="far fa-bookmark"></i> 15 lessons</span> -->
+                        <span><i class="far fa-clock"></i> 8h 25m 9s</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="image shine">
+                    <img src="http://127.0.0.1:5500/School%20website/images/python.jpg" alt="">
+                 
+                </div>
+                <div class="content">
+                    <p>updated 25/09/2021</p>
+                    <h3>Python</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>(785)</span><br><br>
+                        <a href="https://www.coursera.org/courses?query=python"><button class="course-button">Courses</button></a>
+                        <a href="https://youtu.be/QXeEoD0pB3E?si=pkwsFHNPCd4l9ewn"><button class="course-buttons">Youtube</button></a>
+                    </div>
+                    <div class="icons">
+                        <!-- <span><i class="far fa-bookmark"></i> 15 lessons</span> -->
+                        <span><i class="far fa-clock"></i> 8h 25m 9s</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="image shine">
+                    <img src="http://127.0.0.1:5500/School%20website/images/datascience.jpg" alt="">
+                   
+                </div>
+                <div class="content">
+                    <p>updated 25/09/2021</p>
+                    <h3>Data Science</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>(785)</span><br><br>
+                        <a href="https://www.coursera.org/search?query=data%20science"><button class="course-button">Courses</button></a>
+                        <a href="https://youtu.be/-ETQ97mXXF0?si=BRi_IFGjDs1tPvTP"><button class="course-buttons">Youtube</button></a>
+                    </div>
+                    <div class="icons">
+                        <!-- <span><i class="far fa-bookmark"></i> 15 lessons</span> -->
+                        <span><i class="far fa-clock"></i> 8h 25m 9s</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="image shine">
+                    <img src="http://127.0.0.1:5500/School%20website/images/web.jpg" alt="">
+                  
+                </div>
+                <div class="content">
+                    <p>updated 25/09/2021</p>
+                    <h3>Web Developement</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>(785)</span><br><br>
+                        <a href="https://www.coursera.org/search?query=web%20developement"><button class="course-button">Courses</button></a>
+                        <a href="https://youtu.be/nu_pCVPKzTk?si=5G_uNXvby_AJvgmx"><button class="course-buttons">Youtube</button></a>
+                    </div>
+                    <div class="icons">
+                        <!-- <span><i class="far fa-bookmark"></i> 15 lessons</span> -->
+                        <span><i class="far fa-clock"></i> 8h 25m 9s</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="image shine">
+                    <img src="http://127.0.0.1:5500/School%20website/images/c.jpg" alt="">
+                   
+                </div>
+                <div class="content">
+                    <p>updated 25/09/2021</p>
+                    <h3>c</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>(785)</span><br><br>
+                        <a href="https://www.coursera.org/search?query=c"><button class="course-button">Courses</button></a>
+                        <a href="https://youtu.be/irqbmMNs2Bo?si=foJJfj60WhRQtmA9"><button class="course-buttons">Youtube</button></a>
+                    </div>
+                    <div class="icons">
+                        <!-- <span><i class="far fa-bookmark"></i> 15 lessons</span> -->
+                        <span><i class="far fa-clock"></i> 8h 25m 9s</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="image shine">
+                    <img src="http://127.0.0.1:5500/School%20website/images/c++.jpeg" alt="">
+                    
+                </div>
+                <div class="content">
+                    <p>updated 25/09/2021</p>
+                    <h3>c++</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>(785)</span><br><br>
+                        <a href="https://www.coursera.org/search?query=c%2B%2B"><button class="course-button">Courses</button></a>
+                        <a href="https://youtu.be/oOmbSpOzvYg?si=MNxYrLihXmEqEtAo"><button class="course-buttons">Youtube</button></a>
+                    </div>
+                    <div class="icons">
+                        <!-- <span><i class="far fa-bookmark"></i> 15 lessons</span> -->
+                        <span><i class="far fa-clock"></i> 8h 25m 9s</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    <!-- courses section ends -->
+
+    <!-- teacher section starts -->
+
+    <section class="teacher" id="teacher">
+
+        <h1 class="heading">our expert teacher</h1>
+
+        <div class="box-container">
+
+            <div class="box">
+                <div class="image">
+                    <img src="http://127.0.0.1:5500/School%20website/images/teacher-1.png" alt="">
+                    <div class="share">
+                        <a href="#" class="fab fa-facebook-f"></a>
+                        <a href="#" class="fab fa-twitter"></a>
+                        <a href="#" class="fab fa-instagram"></a>
+                    </div>
+                </div>
+                <div class="content">
+                    <h3>Perry</h3>
+                    <span>instructor</span>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="image">
+                    <img src="http://127.0.0.1:5500/School%20website/images/teacher-2.png" alt="">
+                    <div class="share">
+                        <a href="#" class="fab fa-facebook-f"></a>
+                        <a href="#" class="fab fa-twitter"></a>
+                        <a href="#" class="fab fa-instagram"></a>
+                    </div>
+                </div>
+                <div class="content">
+                    <h3>Susy</h3>
+                    <span>instructor</span>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="image">
+                    <img src="http://127.0.0.1:5500/School%20website/images/teacher-3.png" alt="">
+                    <div class="share">
+                        <a href="#" class="fab fa-facebook-f"></a>
+                        <a href="#" class="fab fa-twitter"></a>
+                        <a href="#" class="fab fa-instagram"></a>
+                    </div>
+                </div>
+                <div class="content">
+                    <h3>Devis</h3>
+                    <span>instructor</span>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="image">
+                    <img src="http://127.0.0.1:5500/School%20website/images/teacher-4.png" alt="">
+                    <div class="share">
+                        <a href="#" class="fab fa-facebook-f"></a>
+                        <a href="#" class="fab fa-twitter"></a>
+                        <a href="#" class="fab fa-instagram"></a>
+                    </div>
+                </div>
+                <div class="content">
+                    <h3>Lara</h3>
+                    <span>instructor</span>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- teacher section ends -->
+
+    <!-- review section starts -->
+
+    <section class="review" id="review">
+
+        <h1 class="heading">our students review</h1>
+
+        <div class="swiper review-slider">
+
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide slide">
+                    <p>I've been using Social Learning Network for a few months now, and I'm blown away by how much it's helped me. The community aspect is fantastic – I've met so many like-minded peers who share my passion for coding. </p>
+                    <div class="wrapper">
+                        <div class="separator"></div>
+                        <div class="separator"></div>
+                        <div class="separator"></div>
+                        <div class="separator"></div>
+                        <div class="separator"></div>
+                    </div>
+                    <i class="fas fa-quote-right"></i>
+                    <div class="user">
+                        <img src="http://127.0.0.1:5500/School%20website/images/review-6.png" alt="">
+                        <div class="user-info">
+                            <h3>jane</h3>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide slide">
+                    <p>As a language enthusiast, I've tried several platforms for learning French, but none compare to Your Social Learning platform. The interactive lessons and language exchange feature.</p>
+                    <div class="wrapper">
+                        <div class="separator"></div>
+                        <div class="separator"></div>
+                        <div class="separator"></div>
+                        <div class="separator"></div>
+                        <div class="separator"></div>
+                    </div>
+                    <i class="fas fa-quote-right"></i>
+                    <div class="user">
+                        <img src="http://127.0.0.1:5500/School%20website/images/review-4.png" alt="">
+                        <div class="user-info">
+                            <h3>Emily</h3>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide slide">
+                    <p>"I can't thank this Learning platform enough for the support it's provided during my exam prep. The test preparation courses are comprehensive and well-structured, and the practice quizzes are a lifesaver.</p>
+                    <div class="wrapper">
+                        <div class="separator"></div>
+                        <div class="separator"></div>
+                        <div class="separator"></div>
+                        <div class="separator"></div>
+                        <div class="separator"></div>
+                    </div>
+                    <i class="fas fa-quote-right"></i>
+                    <div class="user">
+                        <img src="http://127.0.0.1:5500/School%20website/images/review-5.png" alt="">
+                        <div class="user-info">
+                            <h3>David</h3>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide slide">
+                    <p>"As a budding entrepreneur, I've found this Learning platform to be an invaluable resource for honing my business skills. The entrepreneurship courses cover everything from market research to funding strategies.</p>
+                    <div class="wrapper">
+                        <div class="separator"></div>
+                        <div class="separator"></div>
+                        <div class="separator"></div>
+                        <div class="separator"></div>
+                        <div class="separator"></div>
+                    </div>
+                    <i class="fas fa-quote-right"></i>
+                    <div class="user">
+                        <img src="http://127.0.0.1:5500/School%20website/images/review-6.png" alt="">
+                        <div class="user-info">
+                            <h3>Cathy</h3>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide slide">
+                    <p>"I've always been passionate about environmental issues, and this Social Learning platform has been the perfect platform for deepening my knowledge and good to use the paltform. </p>
+                    <div class="wrapper">
+                        <div class="separator"></div>
+                        <div class="separator"></div>
+                        <div class="separator"></div>
+                        <div class="separator"></div>
+                        <div class="separator"></div>
+                    </div>
+                    <i class="fas fa-quote-right"></i>
+                    <div class="user">
+                        <img src="http://127.0.0.1:5500/School%20website/images/review-1.png" alt="">
+                        <div class="user-info">
+                            <h3>Michael</h3>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide slide">
+                    <p>"I've struggled with time management and procrastination for years, but this Social Learning platform has helped me turn things around. The personal development courses offer practical tips.</p>
+                    <div class="wrapper">
+                        <div class="separator"></div>
+                        <div class="separator"></div>
+                        <div class="separator"></div>
+                        <div class="separator"></div>
+                        <div class="separator"></div>
+                    </div>
+                    <i class="fas fa-quote-right"></i>
+                    <div class="user">
+                        <img src="http://127.0.0.1:5500/School%20website/images/review-2.png" alt="">
+                        <div class="user-info">
+                            <h3>sara</h3>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- review section ends -->
+
+    <!-- blog section starts -->
+
+    <section class="blog" id="blog">
+
+        <h1 class="heading">our blogs</h1>
+
+        <div class="box-container">
+
+            <div class="box">
+                <div class="image shine">
+                    <img src="http://127.0.0.1:5500/School%20website/images/blog-1.jpg" alt="">
+                    <h3>01 April 2024</h3>
+                </div>
+                <div class="content">
+                    <div class="icons">
+                        <a href="#"><i class="fas fa-user"></i>by admin</a>
+                    </div>
+                    <h3>we have best courses for you</h3>
+                    <p>elearning industry.</p>
+                    <a href="#" class="btn">
+                        <span class="text text-1">read more</span>
+                        <span class="text text-2" aria-hidden="true">read more</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="image shine">
+                    <img src="http://127.0.0.1:5500/School%20website/images/blog-2.jpg" alt="">
+                    <h3>01 April 2024</h3>
+                </div>
+                <div class="content">
+                    <div class="icons">
+                        <a href="#"><i class="fas fa-user"></i>by admin</a>
+                    </div>
+                    <h3>we have best courses for you</h3>
+                    <p>Educational Technology and Mobile Learning</p>
+                    <a href="#" class="btn">
+                        <span class="text text-1">read more</span>
+                        <span class="text text-2" aria-hidden="true">read more</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="image shine">
+                    <img src="http://127.0.0.1:5500/School%20website/images/blog-3.jpg" alt="">
+                    <h3>01 April 2024</h3>
+                </div>
+                <div class="content">
+                    <div class="icons">
+                        <a href="#"><i class="fas fa-user"></i>by admin</a>
+                    </div>
+                    <h3>we have best courses for you</h3>
+                    <p>Teach Thought</p>
+                    <a href="#" class="btn">
+                        <span class="text text-1">read more</span>
+                        <span class="text text-2" aria-hidden="true">read more</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- blog section ends -->
+
+    <!-- contact section starts -->
+
+    <section class="contact" id="contact">
+
+        <h1 class="heading">contact us</h1>
+
+        <div class="row">
+            <div class="image">
+                <img src="http://127.0.0.1:5500/School%20website/images/contact.png" alt="">
+            </div>
+            <form method="post">
+                <h3>send us a message</h3>
+                <input type="text"  placeholder="name" class="box">
+                <input type="email"  placeholder="email" class="box">
+                <input type="number"  placeholder="phone number" class="box">
+                <textarea placeholder="message" class="box" cols="30" rows="10"></textarea>
+                <a href="#" class="btn">
+                    <span class="text text-1">send message</span>
+                    <span class="text text-2" aria-hidden="true">send message</span>
+                </a>
+            </form>
+        </div>
+
+    </section>
+
+    <!-- contact section ends -->
+
+   <section class="footer">
+
+        <div class="box-container">
+
+            <div class="box">
+                <h3>find us here</h3>
+                <p>Our Social Platforms</p>
+                <div class="share">
+                    <a href="https://www.facebook.com/loknath.m.7" class="fab fa-facebook-f"></a>
+                    <a href="https://twitter.com/loknathreddy_M" class="fab fa-twitter"></a>
+                    <a href="https://www.instagram.com/loknath.__.1811/" class="fab fa-instagram"></a>
+                    <a href="https://www.instagram.com/loknath.__.1811/" class="fab fa-linkedin"></a>
+                </div>
+            </div>
+
+            <div class="box">
+                <h3>contact us</h3>
+                <p>+91 9121952027</p>
+                <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox" class="link">Gmail</a>
+            </div>
+
+            <div class="box">
+                <h3>localization</h3>
+                <p>proddatur</p>
+            </div>
+
+        </div>
+        <div class="credit">created by <span>ninjashub </span>| all rights are reserved!</div>
+    </section>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <!-- custom js -->
+    <script >var swiper = new Swiper(".review-slider",{
+  spaceBetween: 20,
+  centeredSlides: true,
+  grabCursor: true,
+  autoplay:{
+    delay: 7500,
+    disableOnInteraction: false,
+  },
+  loop: true,
+  breakpoints: {
+    0: {
+      slidesPerView: 1,
+    },
+    768: {
+      slidesPerView: 2,
+    },
+    991: {
+      slidesPerView: 3,
+    },
+  },
+});</script>
+</body>
+</html>

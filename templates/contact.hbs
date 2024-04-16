@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+ 
+    <style>@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Forum&display=swap");
+
+:root{
+  --primary-color: #12c2b9;
+  --secondary: #dbfffe;
+  --black: #141414;
+  --white: #fff;
+  --box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+*{
+  font-family: 'DM Sans', sans-serif;
+  margin: 0; padding: 0;
+  box-sizing: border-box;
+  outline: none; border: none;
+  text-decoration: none;
+  text-transform: capitalize;
+  transition: all .2s linear;
+}
+
+html{
+  font-size: 62.5%;
+  overflow-x: hidden;
+  scroll-padding-top: 9rem;
+  scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar{
+  width: 1rem;
+}
+
+html::-webkit-scrollbar-track{
+  background: transparent;
+}
+
+html::-webkit-scrollbar-thumb{
+  background: var(--primary-color);
+}
+
+section{
+  padding: 5rem 7%;
+}
+
+.heading{
+  position: relative;
+  color: var(--primary-color);
+  font-size: 3rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .4rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  margin-top: 100px;;
+}
+
+.heading::after{
+  content: url('../images/separator.svg');
+  display: block;
+  width: 10rem;
+  margin-inline: auto;
+  margin-top: -1rem;
+}
+
+.shine{
+  position: relative;
+}
+
+.shine::after{
+  content: "";
+  position: absolute;
+  top: 0; left: 0; 
+  width: 50%;
+  height: 100%;
+  background-image: linear-gradient(to right, transparent 0%, #fff6 100%);
+  transform: skewX(-0.08turn) translateX(-180%);
+}
+
+.shine:is(:hover, :focus-within)::after{
+  transform: skewX(-0.08turn) translateX(275%);
+  transition: 1000ms ease;
+}
+
+
+/* header */
+
+.header{
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: var(--white);
+  box-shadow: var(--box-shadow);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 9%;
+}
+
+.header .logo{
+  font-size: 2.5rem;
+  font-weight: bolder;
+  color: var(--black);
+}
+
+.header .logo i{
+  color: var(--primary-color);
+  padding-right: .5rem;
+}
+
+.header .navbar a{
+  font-size: 1.7rem;
+  color: var(--black);
+  margin: 0 1rem;
+  padding-block: 1rem;
+}
+
+.header .navbar a:hover{
+  color: var(--primary-color);
+}
+
+.header .navbar .hover-underline{
+  position: relative;
+  max-width: max-content;
+}
+
+.header .navbar .hover-underline::after{
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%;
+  height: .5rem;
+  border-block: .1rem solid var(--primary-color);
+  transform: scaleX(0.2);
+  opacity: 0;
+  transition: 500ms ease;
+}
+
+.header .navbar .hover-underline:is(:hover, :focus-visible)::after{
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+.header .icons div{
+  font-size: 2.5rem;
+  margin-left: 1.7rem;
+  color: var(--black);
+  cursor: pointer;
+}
+
+.header .icons div:hover{
+  color: var(--primary-color);
+}
+
+#menu-btn{
+  display: none;
+}
+
+.header .login-form{
+  position: absolute;
+  top: 115%; right: -105%;
+  background: var(--white);
+  box-shadow: .5rem;
+  width: 35rem;
+  box-shadow: var(--box-shadow);
+  padding: 2rem;
+}
+
+.header .login-form.active{
+  right: 2rem;
+  transition: .4s linear;
+}
+
+.header .login-form h3{
+  font-size: 2.2rem;
+  color: var(--black);
+  text-align: center;
+  margin-bottom: .7rem;
+}
+
+.header .login-form .box{
+  font-size: 1.5rem;
+  margin: .7rem 0;
+  border: .1rem solid rgba(0, 0, 0, 0.1);
+  padding: 1rem 1.2rem;
+  color: var(--black);
+  text-transform: none;
+  width: 100%;
+}
+
+.header .login-form .remember{
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin: .7rem 0;
+}
+
+.header .login-form .remember label{
+  font-size: 1.5rem;
+  color: var(--black);
+  cursor: pointer;
+}
+
+
+/* contact */
+
+.contact .row{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2rem;
+  }
+  
+  .contact .row .image{
+    flex: 1 1 40rem;
+  }
+  
+  .contact .row .image img{
+    width: 100%;
+  }
+  
+  .contact .row form{
+    flex: 1 1 40rem;
+    border: 0.1rem solid var(--primary-color);
+    padding: 2rem;
+  }
+  
+  .contact .row form h3{
+    font-size: 2.5rem;
+    color: #444;
+    padding-bottom: 1rem;
+  }
+  
+  .contact .row form .box{
+    width: 100%;
+    font-size: 1.6rem;
+    padding: 1.2rem 1.4rem;
+    border: .1rem solid var(--primary-color);
+    margin: .7rem 0;
+  }
+  
+  .contact .row form .box:focus{
+    color: var(--primary-color);
+  }
+  
+  .contact .row form textarea{
+    height: 15rem;
+    resize: none;
+  }
+  
+  /* ends */
+  
+  /* footer */
+  
+  .footer{
+    background: var(--secondary);
+    text-align: center;
+  }
+  
+  .footer .box-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    gap: 2rem;
+  }
+  
+  .footer .box-container .box h3{
+    font-size: 2.2rem;
+    color: var(--primary-color);
+    padding: 1rem 0;
+  }
+  
+  .footer .box-container .box p{
+    font-size: 1.5rem;
+    color: var(--black);
+    line-height: 2;
+    padding: 1rem 0;
+  }
+  
+  .footer .box-container .box .share{
+    margin-top: 1rem;
+  }
+  
+  .footer .box-container .box .share a{
+    height: 4.5rem;
+    width: 4.5rem;
+    line-height: 4.5rem;
+    border-radius: 10%;
+    font-size: 1.7rem;
+    border: .1rem solid var(--primary-color);
+    color: var(--primary-color);
+    margin-right: .3rem;
+    text-align: center;
+  }
+  
+  .footer .box-container .box .share a:hover{
+    background: var(--primary-color);
+    color: var(--white);
+  }
+  
+  .footer .box-container .box .link{
+    font-size: 1.7rem;
+    line-height: 2;
+    color: var(--black);
+    padding: .5rem 0;
+    display: block;
+  }
+  
+  .footer .box-container .box .link:hover{
+    color: var(--primary-color);
+    text-decoration: underline;
+  }
+  
+  .footer .credit{
+    font-size: 2rem;
+    margin-top: 3rem;
+    padding-top: 3rem;
+    text-align: center;
+    color: var(--black);
+    border-top: .1rem solid var(--primary-color);
+  }
+  
+  .footer .credit span{
+    color: var(--primary-color);
+  }
+  
+  /* ends */
+  
+  /* media queries */
+  
+  @media (max-width:991px){
+  
+    html{
+      font-size: 55%;
+    }
+  
+    .header{
+      padding: 2rem 4rem;
+    }
+  
+    section{
+      padding: 3rem 2rem;
+    }
+  
+  }
+  
+  @media (max-width:768px){
+  
+    #menu-btn{
+      display: inline-block;
+    }
+     .button {
+    width: 320px;
+    height: 35px;
+    margin-top: 20px;
+    border: none;
+    background-color: #49c1a2;
+    color: white;
+    font-size: 18px;
+  }
+  
+    .header .navbar{
+      position: absolute;
+      top: 110%; right: -110%;
+      width: 30rem;
+      box-shadow: var(--box-shadow);
+      border-radius: .5rem;
+      background: var(--white);
+    }
+  
+    .header .navbar.active{
+      right: 2rem;
+      transition: .4s linear;
+    }
+  
+    .header .navbar a{
+      font-size: 2rem;
+      margin: 1rem 2.5rem;
+      display: block;
+    }
+  
+    .home .content h3{
+      font-size: 3rem;
+    }
+  
+    .about .container .about-content{
+      padding-left: 0;
+    }
+  
+  }
+  
+  @media (max-width:450px){
+    html{
+      font-size: 50%;
+    }
+
+     .button {
+    width: 320px;
+    height: 35px;
+    margin-top: 20px;
+    border: none;
+    background-color: #49c1a2;
+    color: white;
+    font-size: 18px;
+  }
+  }</style>
+</head>
+<body>
+    <header class="header">
+
+        <a href="#" class="logo"><i class="fas fa-book"></i> education</a>
+
+       <nav class="navbar">
+            <a href="/index" class="hover-underline">home</a>
+            <a href="/about" class="hover-underline">about</a>
+            <a href="/courses" class="hover-underline">courses</a>
+            <a href="/teacher" class="hover-underline">teacher</a>
+            <a href="/todolist" class="hover-underline">todolist</a>
+            <a href="/review" class="hover-underline">review</a>
+            <a href="/blog" class="hover-underline">blog</a>
+            <a href="/contact" class="hover-underline">contact</a>
+                    <a href="/chatbot" class="hover-underline">chatwithus</a>
+                      <a href="https://www.overleaf.com/latex/templates/altacv-template/trgqjpwnmtgv"  class="hover-underline">CV/Resume</a>
+        </nav>
+
+       
+        
+        </header>
+
+    <!-- header section ends -->
+
+    <!-- contact section starts -->
+
+    <section class="contact" id="contact">
+
+        <h1 class="heading">contact us</h1>
+
+        <div class="row">
+            <div class="image">
+                <img src="http://127.0.0.1:5500/School%20website/images/contact.png" alt="">
+            </div>
+            <form method="post" action="/Contact">
+                <h3>send us a message</h3>
+                <label >Name</label>
+                <input type="text" placeholder="name" name="Name" class="box">
+                <label >Email</label>
+                <input type="email" placeholder="email" name="Email" class="box">
+                <label>PhoneNumber</label>
+                <input type="number" placeholder="phone number" name="PhoneNumber" class="box">
+                <label>Message</label>
+                <textarea placeholder="message" name="Message" class="box" cols="30" rows="10"></textarea>
+                <input class="button" type="submit" value="Send Message">
+                </a>
+            </form>
+        </div>
+
+    </section>
+
+    <!-- contact section ends -->
+
+    <section class="footer">
+
+        <div class="box-container">
+
+            <div class="box">
+                <h3>find us here</h3>
+                <p>Our Social Platforms</p>
+                <div class="share">
+                    <a href="https://www.facebook.com/loknath.m.7" class="fab fa-facebook-f"></a>
+                    <a href="https://twitter.com/loknathreddy_M" class="fab fa-twitter"></a>
+                    <a href="https://www.instagram.com/loknath.__.1811/" class="fab fa-instagram"></a>
+                    <a href="https://www.instagram.com/loknath.__.1811/" class="fab fa-linkedin"></a>
+                </div>
+            </div>
+
+            <div class="box">
+                <h3>contact us</h3>
+                <p>+91 9121952027</p>
+                <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox" class="link">Gmail</a>
+            </div>
+
+            <div class="box">
+                <h3>localization</h3>
+                <p>proddatur</p>
+            </div>
+
+        </div>
+        <div class="credit">created by <span>ninjashub </span>| all rights are reserved!</div>
+    </section>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <!-- custom js -->
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+ 
+   <style>
+    @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Forum&display=swap");
+
+:root{
+  --primary-color: #12c2b9;
+  --secondary: #dbfffe;
+  --black: #141414;
+  --white: #fff;
+  --box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+*{
+  font-family: 'DM Sans', sans-serif;
+  margin: 0; padding: 0;
+  box-sizing: border-box;
+  outline: none; border: none;
+  text-decoration: none;
+  text-transform: capitalize;
+  transition: all .2s linear;
+}
+
+html{
+  font-size: 62.5%;
+  overflow-x: hidden;
+  scroll-padding-top: 9rem;
+  scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar{
+  width: 1rem;
+}
+
+html::-webkit-scrollbar-track{
+  background: transparent;
+}
+
+html::-webkit-scrollbar-thumb{
+  background: var(--primary-color);
+}
+
+section{
+  padding: 5rem 7%;
+}
+
+.heading{
+  position: relative;
+  color: var(--primary-color);
+  font-size: 3rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .4rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  margin-top: 100px;;
+}
+
+.heading::after{
+  content: url('../images/separator.svg');
+  display: block;
+  width: 10rem;
+  margin-inline: auto;
+  margin-top: -1rem;
+}
+
+/* 
+.btn{
+  position: relative;
+  display: inline-block;
+  margin-top: 1rem;
+  color: var(--primary-color);
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  max-width: max-content;
+  border: .1rem solid var(--primary-color);
+  background: var(--secondary);
+  padding: 1.2rem 4.5rem;
+  overflow: hidden;
+  z-index: 1;
+  border-radius: .5rem;
+}
+
+.btn::before{
+  content: "";
+  position: absolute;
+  bottom: 100%; left: 50%;
+  transform: translateX(-50%);
+  width: 200%; height: 200%;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  transition: 500ms ease;
+  z-index: -1;
+}
+
+.btn .text{
+  transition: 250ms ease;
+}
+
+.btn .text-2{
+  position: absolute;
+  top: 100%; left: 50%;
+  transform: translateX(-50%);
+  min-width: max-content;
+  color: var(--secondary);
+}
+
+.btn:is(:hover, :focus-visible)::before{
+  bottom: -50%;
+}
+
+.btn:is(:hover, :focus-visible) .text-1{
+  transform: translateY(-4rem);
+}
+
+.btn:is(:hover, :focus-visible) .text-2{
+  top: 50%;
+  transform: translate(-50%, -50%);
+} */
+
+.shine{
+  position: relative;
+}
+
+.shine::after{
+  content: "";
+  position: absolute;
+  top: 0; left: 0; 
+  width: 50%;
+  height: 100%;
+  background-image: linear-gradient(to right, transparent 0%, #fff6 100%);
+  transform: skewX(-0.08turn) translateX(-180%);
+}
+
+.shine:is(:hover, :focus-within)::after{
+  transform: skewX(-0.08turn) translateX(275%);
+  transition: 1000ms ease;
+}
+
+
+/* header */
+
+.header{
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: var(--white);
+  box-shadow: var(--box-shadow);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 9%;
+}
+
+.header .logo{
+  font-size: 2.5rem;
+  font-weight: bolder;
+  color: var(--black);
+}
+
+.header .logo i{
+  color: var(--primary-color);
+  padding-right: .5rem;
+}
+
+.header .navbar a{
+  font-size: 1.7rem;
+  color: var(--black);
+  margin: 0 1rem;
+  padding-block: 1rem;
+}
+
+.header .navbar a:hover{
+  color: var(--primary-color);
+}
+
+.header .navbar .hover-underline{
+  position: relative;
+  max-width: max-content;
+}
+
+.header .navbar .hover-underline::after{
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%;
+  height: .5rem;
+  border-block: .1rem solid var(--primary-color);
+  transform: scaleX(0.2);
+  opacity: 0;
+  transition: 500ms ease;
+}
+
+.header .navbar .hover-underline:is(:hover, :focus-visible)::after{
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+.header .icons div{
+  font-size: 2.5rem;
+  margin-left: 1.7rem;
+  color: var(--black);
+  cursor: pointer;
+}
+
+.header .icons div:hover{
+  color: var(--primary-color);
+}
+
+#menu-btn{
+  display: none;
+}
+
+.header .login-form{
+  position: absolute;
+  top: 115%; right: -105%;
+  background: var(--white);
+  box-shadow: .5rem;
+  width: 35rem;
+  box-shadow: var(--box-shadow);
+  padding: 2rem;
+}
+
+.header .login-form.active{
+  right: 2rem;
+  transition: .4s linear;
+}
+
+.header .login-form h3{
+  font-size: 2.2rem;
+  color: var(--black);
+  text-align: center;
+  margin-bottom: .7rem;
+}
+
+.header .login-form .box{
+  font-size: 1.5rem;
+  margin: .7rem 0;
+  border: .1rem solid rgba(0, 0, 0, 0.1);
+  padding: 1rem 1.2rem;
+  color: var(--black);
+  text-transform: none;
+  width: 100%;
+}
+
+.header .login-form .remember{
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin: .7rem 0;
+}
+
+.header .login-form .remember label{
+  font-size: 1.5rem;
+  color: var(--black);
+  cursor: pointer;
+}
+
+/* home */
+
+.home{
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: url(../images/home.jpg) no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.home .content{
+  max-width: 50rem;
+}
+
+.home .content h3{
+  font-size: 5rem;
+  color: var(--white);
+  line-height: 1.2;
+}
+
+.home .content p{
+  font-size: 1.5rem;
+  line-height: 2;
+  color: var(--white);
+  padding: 1rem 0;
+}
+
+/* ends */
+
+/* about */
+
+.about .container{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.about .container .about-image{
+  position: relative;
+  flex: 1 1 40rem;
+}
+
+.about .container .about-image img{
+  width: 80%;
+}
+
+.about .container .about-image .about-img{
+  position: absolute;
+  bottom: -10rem;
+  right: -1rem;
+  width: 25rem;
+  padding-block: 5rem;
+}
+
+.about .container .about-content{
+  flex: 1 1 50rem;
+  padding-left: 6rem;
+  padding-top: 8rem;
+}
+
+.about .container .about-content h3{
+  font-size: 3rem;
+  color: var(--primary-color);
+}
+
+.about .container .about-content p{
+  font-size: 1.6rem;
+  color: #444;
+  padding: 1rem 0;
+  line-height: 1.8;
+}
+.about .more h1{
+  text-align: center;
+  margin-top: 90px;
+  position: relative;
+  color: var(--primary-color);
+  font-size: 3rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .4rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  margin-top: 100px;;
+}
+.more::after{
+  content: url('../images/separator.svg');
+  display: block;
+  width: 10rem;
+  margin-inline: auto;
+  margin-top: -1rem;
+}
+.about .para p{
+  font-size: 2rem;
+  color: #444;
+  padding: 1rem 0;
+  line-height: 1.8;
+}
+.about .para p span{
+  color: orange;
+  font-size: 2.5rem;
+}
+/* ends */
+.footer{
+  background: var(--secondary);
+  text-align: center;
+}
+
+.footer .box-container{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  gap: 2rem;
+}
+
+.footer .box-container .box h3{
+  font-size: 2.2rem;
+  color: var(--primary-color);
+  padding: 1rem 0;
+}
+
+.footer .box-container .box p{
+  font-size: 1.5rem;
+  color: var(--black);
+  line-height: 2;
+  padding: 1rem 0;
+}
+
+.footer .box-container .box .share{
+  margin-top: 1rem;
+}
+
+.footer .box-container .box .share a{
+  height: 4.5rem;
+  width: 4.5rem;
+  line-height: 4.5rem;
+  border-radius: 10%;
+  font-size: 1.7rem;
+  border: .1rem solid var(--primary-color);
+  color: var(--primary-color);
+  margin-right: .3rem;
+  text-align: center;
+}
+
+.footer .box-container .box .share a:hover{
+  background: var(--primary-color);
+  color: var(--white);
+}
+
+.footer .box-container .box .link{
+  font-size: 1.7rem;
+  line-height: 2;
+  color: var(--black);
+  padding: .5rem 0;
+  display: block;
+}
+
+.footer .box-container .box .link:hover{
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+.footer .credit{
+  font-size: 2rem;
+  margin-top: 3rem;
+  padding-top: 3rem;
+  text-align: center;
+  color: var(--black);
+  border-top: .1rem solid var(--primary-color);
+}
+
+.footer .credit span{
+  color: var(--primary-color);
+}
+
+   </style>
+</head>
+<body>
+    <header class="header">
+
+        <a href="#" class="logo"><i class="fas fa-book"></i> education</a>
+
+        <nav class="navbar">
+            <a href="/index" class="hover-underline">home</a>
+            <a href="/about" class="hover-underline">about</a>
+            <a href="/courses" class="hover-underline">courses</a>
+            <a href="/teacher" class="hover-underline">teacher</a>
+            <a href="/todolist" class="hover-underline">todolist</a>
+            <a href="/review" class="hover-underline">review</a>
+            <a href="/blog" class="hover-underline">blog</a>
+            <a href="/contact" class="hover-underline">contact</a>
+            <a href="/chatbot" class="hover-underline">chatwithus</a>
+              <a href="https://www.overleaf.com/latex/templates/altacv-template/trgqjpwnmtgv"  class="hover-underline">CV/Resume</a>
+        </nav>
+        
+        </header>
+
+    </header>
+
+    <!-- header section ends -->
+
+
+
+    <section class="about" id="about">
+
+        <h1 class="heading">about us</h1>
+        
+
+        <div class="container">
+
+            <figure class="about-image">
+                <img src="http://127.0.0.1:5500/School%20website/images/about.jpg" alt="" height="500">
+                <img src="http://127.0.0.1:5500/School%20website/images/about-1.jpg" alt="" class="about-img">
+            </figure>
+
+            <div class="about-content">
+                <h3>18 years of experience</h3>
+                <p>Welcome to  Social Learning Network, where learning transcends boundaries and collaboration fuels innovation. With over 18 years of dedicated experience, we have been at the forefront of revolutionizing education through digital connectivity.</p>
+                <p>Our platform is not just a place to consume information; it's a vibrant community where ideas are exchanged, knowledge is co-created, and friendships are formed. With features designed to foster interaction, such as discussion forums, group projects, and live tutoring sessions, we empower you to engage deeply with your peers and educators.</p>    
+            </div>
+
+        </div>
+        <div class="more">
+            <h1>We Can provide</h1>
+        </div>
+        <div class="para">
+            <p><span>1)User-Friendly Interface:</span> Ensure that the platform is intuitive and easy to navigate, with clear instructions and prompts for users.</p>
+            <p><span>2)Interactive Features: </span>Include features that encourage interaction and collaboration among students, such as discussion forums, group projects, and peer-to-peer messaging.</p>
+            <p><span>3)Resource Sharing: </span>Allow students to share educational resources, such as notes, articles, and study guides, to facilitate learning and collaboration.</p>
+            <p><span>4)Privacy and Security:</span> Implement robust security measures to protect students' personal information and ensure a safe online environment for learning and collaboration.</p>
+            <p><span>5)Continuous Updates and Maintenance:</span> Regularly update and maintain the platform to address any bugs or issues, add new features, and improve overall performance and user experience.</p>
+            <p><span>6)Teacher Support:</span> Provide tools and resources for teachers to facilitate learning and monitor student progress, such as analytics dashboards, grading tools, and communication channels.</p>
+
+        </div>
+
+    </section>
+    <section class="footer">
+
+        <div class="box-container">
+
+            <div class="box">
+                <h3>find us here</h3>
+                <p>Our Social Platforms</p>
+                <div class="share">
+                    <a href="https://www.facebook.com/loknath.m.7" class="fab fa-facebook-f"></a>
+                    <a href="https://twitter.com/loknathreddy_M" class="fab fa-twitter"></a>
+                    <a href="https://www.instagram.com/loknath.__.1811/" class="fab fa-instagram"></a>
+                    <a href="https://www.instagram.com/loknath.__.1811/" class="fab fa-linkedin"></a>
+                </div>
+            </div>
+
+            <div class="box">
+                <h3>contact us</h3>
+                <p>+91 9121952027</p>
+                <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox" class="link">Gmail</a>
+            </div>
+
+            <div class="box">
+                <h3>localization</h3>
+                <p>proddatur</p>
+            </div>
+
+        </div>
+        <div class="credit">created by <span>ninjashub </span>| all rights are reserved!</div>
+    </section>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <!-- custom js -->
+    <script src="js/script.js"></script>
+
+</body>
+</html>

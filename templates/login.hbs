@@ -1,0 +1,116 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <style>
+    body {
+    background-color: #344a72;
+    font-family: "Roboto", sans-serif;
+  }
+  
+  .signup-box {
+    width: 360px;
+    height: 620px;
+    margin: auto;
+    background-color: white;
+    border-radius: 3px;
+  }
+  
+  .login-box {
+    width: 360px;
+    height: 270px;
+    margin: auto;
+    border-radius: 3px;
+    background-color: white;
+    margin-top:15%;
+  }
+  
+  h1 {
+    text-align: center;
+    padding-top: 15px;
+  }
+  
+  h4 {
+    text-align: center;
+  }
+  
+  form {
+    width: 300px;
+    margin-left: 20px;
+  }
+  
+  form label {
+    display: flex;
+    margin-top: 20px;
+    font-size: 18px;
+  }
+  
+  form input {
+    width: 100%;
+    padding: 7px;
+    border: none;
+    border: 1px solid gray;
+    border-radius: 6px;
+    outline: none;
+  }
+  .fa{
+    margin-right:10px;
+  }
+.eye{
+    position:absolute;
+  
+}
+
+  .button {
+    width: 320px;
+    height: 35px;
+    margin-top: 20px;
+    border: none;
+    background-color: #49c1a2;
+    color: white;
+    font-size: 18px;
+  }
+  p {
+    text-align: center;
+    padding-top: 20px;
+    font-size: 15px;
+  }
+  .para-2 {
+    text-align: center;
+    color:  #49c1a2;
+    font-size: 15px;
+    margin-top:10px;
+  }
+  .para-2 a {
+    color: #49c1a2;
+  }
+  h4{
+    color: orange;
+    font-size: 40px;
+  }
+   </style>
+</head>
+<body>
+<h4>Welcome! To the social learning Network for students</h4>
+     <div class="login-box">
+    <h1>Login</h1>
+    <form action="/login" method="post">
+     {{!-- <label>Email</label>
+            <input type="email" name="Email" placeholder="Email"> --}}
+             <label>Email</label>
+            <input type="text" placeholder="Email" name="Email"/>
+            <label>Password</label>
+            <input type="password" placeholder="password" name="Password"/>
+            <span class="eye">
+              <i id="hide1" class="fa fa-eye"></i>
+              <i id="hide2" class="fa fa-eye-slash"></i>
+            </span>
+    <input class="button" type="submit" value="submit">
+    <p class="para-2">
+          Already have an account?  <a href="/signup">Create Account</a>
+        </p>
+    </form>
+     </div>
+</body>
+</html>
